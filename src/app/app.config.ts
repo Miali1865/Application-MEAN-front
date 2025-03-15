@@ -1,8 +1,18 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { importProvidersFrom } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { BienvenueComponent } from './bienvenue/bienvenue.component';
+import { ContactComponent } from './contact/contact.component';
 
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+export const appConfig = {
+  providers: [
+    importProvidersFrom(BrowserModule, RouterModule.forRoot([
+      { path: '', component: BienvenueComponent },
+      { path: 'contact', component: ContactComponent }
+    ]))
+  ],
+  declarations: [HeaderComponent, FooterComponent, BienvenueComponent, ContactComponent],
+  imports: [RouterModule]
 };

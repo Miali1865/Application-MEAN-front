@@ -1,10 +1,44 @@
-<header>
-    <nav>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-20">
+            <div class="flex items-center">
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-700 hover:text-primary">Services</a>
+                <a href="#pricing" class="text-gray-700 hover:text-primary">Pricing</a>
+                <a href="#reviews" class="text-gray-700 hover:text-primary">Reviews</a>
+                <a href="/contact" class="text-gray-700 hover:text-primary">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center">
+                    <i class="ri-phone-fill text-primary ri-lg"></i>
+                    <span class="ml-2 text-gray-700">Emergency: (555) 123-4567</span>
+                </div>
+                <button class="bg-gray-100 text-gray-700 px-6 py-2 !rounded-button hover:bg-gray-200 cursor-pointer whitespace-nowrap">
+                  My Appointments
+                </button>
+                <button class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 cursor-pointer whitespace-nowrap">
+                  Book Now
+                </button>
+            </div>
+        </div>
+    </div>
 </header>
+<section class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://public.readdy.ai/ai/img_res/9e12ee8e0c268bd85f209c4baa99e4a3.jpg')">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="container mx-auto px-4 h-full flex items-center relative">
+        <div class="max-w-2xl text-white">
+            <h1 class="text-5xl font-bold mb-6">Expert Auto Care You Can Trust</h1>
+            <p class="text-xl mb-8">Professional service with state-of-the-art equipment and certified mechanics. Your vehicle deserves the best care.</p>
+            <div class="flex space-x-4">
+                <button class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-primary/90 cursor-pointer whitespace-nowrap">
+                Schedule Service
+                </button>
+                <button class="bg-white text-primary px-8 py-3 !rounded-button hover:bg-gray-100 cursor-pointer whitespace-nowrap">
+                View Services
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

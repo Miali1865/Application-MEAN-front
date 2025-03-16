@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-// import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 // Importation des composants
@@ -10,7 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BienvenueComponent } from './bienvenue/bienvenue.component';
 import { ContactComponent } from './contact/contact.component';
-import { PackComponent } from './pack/pack.component';
+import { PackListComponent } from './components/pack-list/pack-list.component';
+import { PackService } from './services/pack.service';
 
 // Importation de la configuration des routes
 import { routes } from './app.routes';
@@ -22,15 +23,15 @@ import { routes } from './app.routes';
     FooterComponent,
     BienvenueComponent,
     ContactComponent,
-    PackComponent
+    PackListComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
-    // HttpClientModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [PackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

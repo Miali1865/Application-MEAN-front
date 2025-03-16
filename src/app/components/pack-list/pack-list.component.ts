@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PackService } from '../../services/pack.service';
-import { CommonModule } from '@angular/common'; // Ajouter cette ligne
 
 @Component({
-  selector: 'app-pack-list',
-  templateUrl: './pack-list.component.html',
-  imports: [CommonModule] // Ajouter CommonModule ici
+  standalone: true,
+  selector: 'app-pack',
+  templateUrl: './pack.component.html',
+  styleUrls: ['./pack.component.css']
 })
 export class PackListComponent implements OnInit {
   packs: any[] = [];
@@ -13,17 +13,18 @@ export class PackListComponent implements OnInit {
   constructor(private packService: PackService) {}
 
   ngOnInit(): void {
-    this.loadPacks();
+    this.fetchPacks();
   }
 
-  loadPacks(): void {
-    this.packService.getPacks().subscribe({
-      next: (data) => {
+  fetchPacks(): void {
+    this.packService.getPacks().subscribe(
+      (data) => {
+        console.log('Données récupérées:', data);
         this.packs = data;
       },
-      error: (err) => {
-        console.error('Erreur de récupération des packs:', err);
+      (error) => {
+        console.error('Erreur lors du chargement des packs:', error);
       }
-    });
+    );
   }
 }

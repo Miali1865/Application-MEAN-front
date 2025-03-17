@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import {HeaderComponent} from './layout/header/header.component';
+import {FooterComponent} from './layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',

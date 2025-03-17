@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-bienvenue',
   imports: [CommonModule],
   templateUrl: './bienvenue.component.html',
+  standalone: true,
   styleUrl: './bienvenue.component.css'
 })
 export class BienvenueComponent {

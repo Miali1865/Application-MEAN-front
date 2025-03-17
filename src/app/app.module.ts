@@ -5,9 +5,9 @@ import { CommonModule } from '@angular/common';
 
 // Importation des composants
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { BienvenueComponent } from './bienvenue/bienvenue.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { BienvenueComponent } from './pages/bienvenue/bienvenue.component';
 import { ContactComponent } from './contact/contact.component';
 import { PackListComponent } from './components/pack-list/pack-list.component';
 

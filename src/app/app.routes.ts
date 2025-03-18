@@ -6,6 +6,8 @@ import {LoginComponent} from './pages/login/login.component';
 import {LayoutAccueilComponent} from './layout/layout-accueil/layout-accueil.component';
 import {CollectionsListComponent} from './pages/gestion-donnees/collections-list/collections-list.component';
 import {InscriptionClientComponent} from './pages/inscription-client/inscription-client.component';
+import {tokenguardChildGuard} from './guards/tokenguard/tokenguard-child.guard';
+import {tokenguardActivateGuard} from './guards/tokenguard/tokenguard-activate.guard';
 
 export const routes: Routes = [
 
@@ -22,9 +24,15 @@ export const routes: Routes = [
   {
     path: 'manager',
     component: LayoutAccueilComponent,
+    canActivateChild:[
+      tokenguardChildGuard
+    ],
+    canActivate:[
+      tokenguardActivateGuard
+    ],
     children:[
       { path: 'collectionslist', component: CollectionsListComponent , title : 'CollectionsList'},
-      { path: '', redirectTo: 'collectionslist', pathMatch: 'full' },
+      // { path: 'dashboard', component: ManagerDashboardComponent , title : 'Manager dashboard'},
 
     ]
   },

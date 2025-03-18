@@ -1,7 +1,4 @@
-<ul *ngIf="packs.length > 0; else noData">
-    <li *ngFor="let pack of packs">{{ pack.name }}</li>
-</ul>
-
 <ng-template #noData>
     <p>Aucun pack disponible.</p>
 </ng-template>
+

@@ -1,59 +1,38 @@
 // ng generate class user
 
 export class User {
-  private _id: string;
-  private _nom: string;
-  private _prenoms: string;
-  private _matricule: string;
-  private _poste: string;
+  private _name: string;
+  private _email: string;
+  private _role: string;
 
 
-  constructor(id: string, nom: string, prenoms: string, matricule: string, poste: string) {
-    this._id = id;
-    this._nom = nom;
-    this._prenoms = prenoms;
-    this._matricule = matricule;
-    this._poste = poste;
+  constructor(name: string, email: string, role: string) {
+    this._name = name;
+    this._email = email;
+    this._role = role;
   }
 
-
-  get id(): string {
-    return this._id;
+  get name(): string {
+    return this._name;
   }
 
-  set id(value: string) {
-    this._id = value;
+  set name(value: string) {
+    this._name = value;
   }
 
-  get nom(): string {
-    return this._nom;
+  get email(): string {
+    return this._email;
   }
 
-  set nom(value: string) {
-    this._nom = value;
+  set email(value: string) {
+    this._email = value;
   }
 
-  get prenoms(): string {
-    return this._prenoms;
+  get role(): string {
+    return this._role;
   }
 
-  set prenoms(value: string) {
-    this._prenoms = value;
-  }
-
-  get matricule(): string {
-    return this._matricule;
-  }
-
-  set matricule(value: string) {
-    this._matricule = value;
-  }
-
-  get poste(): string {
-    return this._poste;
-  }
-
-  set poste(value: string) {
-    this._poste = value;
+  set role(value: string) {
+    this._role = value;
   }
 }

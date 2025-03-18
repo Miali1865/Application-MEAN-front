@@ -5,23 +5,28 @@ import { ContactComponent } from './contact/contact.component';
 import { PackListComponent } from './components/pack-list/pack-list.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
+import {MessageService} from "primeng/api";
 
 import { routes } from './app.routes';
-import {HeaderComponent} from './layout/header/header.component';
-import {FooterComponent} from './layout/footer/footer.component';
-import {BienvenueComponent} from './pages/bienvenue/bienvenue.component';
+
+import { ApplicationConfig } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig = {
   providers: [
+    MessageService,
+
+    provideAnimationsAsync(), // Configuration recommandée pour Angular 19
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    }),
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     provideHttpClient(),
     provideRouter(routes),
-    importProvidersFrom(BrowserModule, RouterModule.forRoot([
-      { path: '', component: BienvenueComponent },
-      { path: 'contact', component: ContactComponent },
-      { path: 'packs', component: PackListComponent }
-    ]))
   ],
-  declarations: [HeaderComponent, FooterComponent, BienvenueComponent, ContactComponent],
   imports: [RouterModule]
 };

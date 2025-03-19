@@ -13,8 +13,9 @@ export class SigninupService {
 
   constructor(private http: HttpClient) {}
 
+  // TODO : inscription miandry modification back : mijery hoe efa nisy ve , dia sady manisy token
   inscription(name: string,password: string,email: string){
-
+    // return this.http.post(this.apiUrl + 'register/', loginparams).pipe(
   }
 
   getuserconnected():null|User{

@@ -6,7 +6,6 @@ export const tokenguardActivateGuard: CanActivateFn = (route, state) => {
   const loginservice=inject(SigninupService);
 
   const router = inject(Router);
-
   try{
     if (loginservice.getuserconnected() === null || localStorage.getItem('token') === null){
       console.error("tokenguardChildGuard : user is null");

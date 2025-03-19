@@ -10,7 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import {LoaderspinnerService} from './services/loaderspinner/loaderspinner.service';
-import {loaderspinnerInterceptor} from './inetrceptors/loaderspinner/loaderspinner.interceptor';
+import {loaderspinnerInterceptor} from './interceptors/loaderspinner/loaderspinner.interceptor';
 
 export const appConfig = {
   providers: [

@@ -8,6 +8,11 @@ import {CollectionsListComponent} from './pages/gestion-donnees/collections-list
 import {InscriptionClientComponent} from './pages/inscription-client/inscription-client.component';
 import {tokenguardChildGuard} from './guards/tokenguard/tokenguard-child.guard';
 import {tokenguardActivateGuard} from './guards/tokenguard/tokenguard-activate.guard';
+import { LayoutManagerComponent } from './layout/manager/layout-manager/layout-manager.component';
+import {ManagerPageComponent} from './pages/manager/dashboard/manager-page.component';
+import { LayoutClientComponent } from './layout/client/layout-client/layout-client.component';
+import {AccueilClientComponent} from './pages/client/accueil-client/accueil-client.component';
+
 
 export const routes: Routes = [
 
@@ -23,7 +28,7 @@ export const routes: Routes = [
 
   {
     path: 'manager',
-    component: LayoutAccueilComponent,
+    component: LayoutManagerComponent,
     canActivateChild:[
       tokenguardChildGuard
     ],
@@ -31,6 +36,7 @@ export const routes: Routes = [
       tokenguardActivateGuard
     ],
     children:[
+      { path: '', component: ManagerPageComponent , title : 'Accueil Manager'},
       { path: 'collectionslist', component: CollectionsListComponent , title : 'CollectionsList'},
       // { path: 'dashboard', component: ManagerDashboardComponent , title : 'Manager dashboard'},
 
@@ -38,6 +44,22 @@ export const routes: Routes = [
   },
 
   // mecanicien
+  {
+    path: 'client',
+    component: LayoutClientComponent,
+    canActivateChild:[
+      tokenguardChildGuard
+    ],
+    canActivate:[
+      tokenguardActivateGuard
+    ],
+    children:[
+      { path: '', component: AccueilClientComponent , title : 'Accueil client'},
+      { path: 'collectionslist', component: CollectionsListComponent , title : 'CollectionsList'},
+      // { path: 'dashboard', component: ManagerDashboardComponent , title : 'Manager dashboard'},
+
+    ]
+  },
 
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
 

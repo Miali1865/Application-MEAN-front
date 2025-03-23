@@ -20,9 +20,12 @@ export class SigninupService {
 
   getuserconnected():null|User{
     const userlocalStorage = localStorage.getItem('user');
+    // console.log('ary ato ndray ary ',userlocalStorage);
     if (userlocalStorage) {
       const objuser = JSON.parse(userlocalStorage)
-      const user = new User(objuser.name, objuser.email, objuser.role);
+      // const user = new User(objuser.name, objuser.email, objuser.role); -> code balita nefa mialivola tsy mahazo an'ilay user 
+      const user = new User(objuser._name, objuser._email, objuser._role); // code mialivola afaka fafana raha mandeha ilay ambony
+      // console.log('ary ato ndray ary ',user);
       return user;
     }else {
       return null

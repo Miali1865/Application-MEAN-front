@@ -17,7 +17,7 @@ export class User {
   }
 
   set name(value: string) {
-    this._name = value;
+    this._name = value; 
   }
 
   get email(): string {

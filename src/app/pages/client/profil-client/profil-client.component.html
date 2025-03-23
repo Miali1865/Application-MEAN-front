@@ -1,0 +1,84 @@
+<div class="container mx-auto px-6 py-10">
+    <!-- Section de bienvenue -->
+    <section class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Profil du Client</h1>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">Bienvenue dans votre espace personnel. Vous pouvez consulter vos informations, l'historique de vos services et vos factures ici.</p>
+    </section>
+
+    <!-- Détails personnels du client -->
+    <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6"><i class="fas fa-user mr-2 text-blue-600"></i>Détails Personnels</h3>
+        <div class="space-y-4">
+            <div class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-id-card-alt mr-2 text-gray-500"></i>Nom :</span>
+                <span class="text-gray-600">Jean Dupont</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-envelope mr-2 text-gray-500"></i>Email :</span>
+                <span class="text-gray-600">jean.dupont&#64;email.com</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-phone-alt mr-2 text-gray-500"></i>Téléphone :</span>
+                <span class="text-gray-600">+33 6 12 34 56 78</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-home mr-2 text-gray-500"></i>Adresse :</span>
+                <span class="text-gray-600">123 Rue de Paris, 75001 Paris, France</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Historique des services demandés -->
+    <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6"><i class="fas fa-cogs mr-2 text-orange-600"></i>Historique des Services</h3>
+        <ul class="space-y-4">
+            <li class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-wrench mr-2 text-gray-500"></i>Réparation #1234 - Toyota Corolla</span>
+                <span class="text-gray-600">25 Mars 2025</span>
+            </li>
+            <li class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-cogs mr-2 text-gray-500"></i>Révision #1235 - Honda Civic</span>
+                <span class="text-gray-600">24 Mars 2025</span>
+            </li>
+            <li class="flex justify-between">
+                <span class="font-medium text-gray-700"><i class="fas fa-wrench mr-2 text-gray-500"></i>Réparation #1236 - BMW Série 3</span>
+                <span class="text-gray-600">23 Mars 2025</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Facturation -->
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6"><i class="fas fa-file-invoice mr-2 text-green-600"></i>Facturation</h3>
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Facture #</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Date</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Montant</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-6 py-3 text-sm text-gray-600">#001234</td>
+                    <td class="px-6 py-3 text-sm text-gray-600">26 Mars 2025</td>
+                    <td class="px-6 py-3 text-sm text-gray-600">€150.00</td>
+                    <td class="px-6 py-3 text-sm text-gray-600"><span class="text-green-600">Payée</span></td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-3 text-sm text-gray-600">#001235</td>
+                    <td class="px-6 py-3 text-sm text-gray-600">24 Mars 2025</td>
+                    <td class="px-6 py-3 text-sm text-gray-600">€250.00</td>
+                    <td class="px-6 py-3 text-sm text-gray-600"><span class="text-red-600">En attente</span></td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-3 text-sm text-gray-600">#001236</td>
+                    <td class="px-6 py-3 text-sm text-gray-600">23 Mars 2025</td>
+                    <td class="px-6 py-3 text-sm text-gray-600">€180.00</td>
+                    <td class="px-6 py-3 text-sm text-gray-600"><span class="text-yellow-600">Partiellement payée</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

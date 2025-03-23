@@ -12,7 +12,9 @@ import { LayoutManagerComponent } from './layout/manager/layout-manager/layout-m
 import {ManagerPageComponent} from './pages/manager/dashboard/manager-page.component';
 import { LayoutClientComponent } from './layout/client/layout-client/layout-client.component';
 import {AccueilClientComponent} from './pages/client/accueil-client/accueil-client.component';
-
+import {CarMaintenanceComponent} from './pages/client/car-maintenance/car-maintenance.component';
+import {ServiceClientComponent} from './pages/client/service-client/service-client.component';
+import {ProfilClientComponent} from './pages/client/profil-client/profil-client.component';
 
 export const routes: Routes = [
 
@@ -55,8 +57,9 @@ export const routes: Routes = [
     ],
     children:[
       { path: '', component: AccueilClientComponent , title : 'Accueil client'},
-      { path: 'collectionslist', component: CollectionsListComponent , title : 'CollectionsList'},
-      // { path: 'dashboard', component: ManagerDashboardComponent , title : 'Manager dashboard'},
+      { path: 'carnet', component: CarMaintenanceComponent , title : 'Carnet d\'entretien'},
+      { path: 'service', component: ServiceClientComponent , title : 'Demande de service'},
+      { path: 'profil', component: ProfilClientComponent , title : 'Information du client'},
 
     ]
   },

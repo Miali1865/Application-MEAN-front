@@ -1,3 +1,4 @@
+
 <section class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://public.readdy.ai/ai/img_res/9e12ee8e0c268bd85f209c4baa99e4a3.jpg')">
   <div class="absolute inset-0 bg-black/50"></div>
   <div class="container mx-auto px-4 h-full flex items-center relative">
@@ -21,7 +22,7 @@
         <a routerLink="/packs" class="bg-primary text-white px-6 py-3 rounded hover:bg-primary/80 transition">
           Voir les Packs
         </a>
-        <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+        <h2 class="text-3xl font-bold text-center mb-12">Nos services</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">
                 <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
@@ -68,15 +69,20 @@
                 <p class="text-primary font-semibold mb-4">Custom Quote</p>
                 <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>
             </div>
+          @for (i of packs;track $index){
             <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">
-                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
-                    <i class="ri-car-fill text-primary ri-2x"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Major Repairs</h3>
-                <p class="text-gray-600 mb-4">Complete repair services for all vehicle makes and models.</p>
-                <p class="text-primary font-semibold mb-4">Custom Quote</p>
-                <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                <i class="ri-car-fill text-primary ri-2x"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">{{i.name}}</h3>
+              <p class="text-gray-600 mb-4">{{i.description}}</p>
+              <p class="text-primary font-semibold mb-4">A partir de $89.99</p>
+              <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir plus →</button>
             </div>
+
+          }
+
+
         </div>
     </div>
 </section>

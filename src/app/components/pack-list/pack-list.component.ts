@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { PackService } from '../../services/pack.service';
+import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -7,24 +6,5 @@ import { PackService } from '../../services/pack.service';
   templateUrl: './pack.component.html',
   styleUrls: ['./pack.component.css']
 })
-export class PackListComponent implements OnInit {
-  packs: any[] = [];
-
-  constructor(private packService: PackService) {}
-
-  ngOnInit(): void {
-    this.fetchPacks();
-  }
-
-  fetchPacks(): void {
-    this.packService.getPacks().subscribe(
-      (data) => {
-        console.log('Données récupérées:', data);
-        this.packs = data;
-      },
-      (error) => {
-        console.error('Erreur lors du chargement des packs:', error);
-      }
-    );
-  }
+export class PackListComponent  {
 }

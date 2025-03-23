@@ -1,27 +1,32 @@
-import {importProvidersFrom, LOCALE_ID} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { LOCALE_ID} from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ContactComponent } from './contact/contact.component';
-import { PackListComponent } from './components/pack-list/pack-list.component';
-import { provideHttpClient } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors} from '@angular/common/http';
 import { provideRouter } from '@angular/router';
+import {MessageService} from "primeng/api";
 
 import { routes } from './app.routes';
-import {HeaderComponent} from './layout/header/header.component';
-import {FooterComponent} from './layout/footer/footer.component';
-import {BienvenueComponent} from './pages/bienvenue/bienvenue.component';
+
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+import {LoaderspinnerService} from './services/loaderspinner/loaderspinner.service';
+import {loaderspinnerInterceptor} from './interceptors/loaderspinner/loaderspinner.interceptor';
 
 export const appConfig = {
   providers: [
+    MessageService,
+    LoaderspinnerService,
+    provideAnimationsAsync(), // Configuration recommandée pour Angular 19
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    }),
     { provide: LOCALE_ID, useValue: 'fr-FR' },
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([loaderspinnerInterceptor])
+    ),
     provideRouter(routes),
-    importProvidersFrom(BrowserModule, RouterModule.forRoot([
-      { path: '', component: BienvenueComponent },
-      { path: 'contact', component: ContactComponent },
-      { path: 'packs', component: PackListComponent }
-    ]))
   ],
-  declarations: [HeaderComponent, FooterComponent, BienvenueComponent, ContactComponent],
   imports: [RouterModule]
 };

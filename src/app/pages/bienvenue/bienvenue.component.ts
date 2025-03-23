@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Title} from '@angular/platform-browser';
+import {PackService} from '../../services/services/pack.service';
 
 @Component({
   selector: 'app-bienvenue',
@@ -10,29 +10,26 @@ import {Title} from '@angular/platform-browser';
   styleUrl: './bienvenue.component.css'
 })
 export class BienvenueComponent implements OnInit {
+  packs!: any[];
 
-  constructor(private titleService: Title) {}
+  constructor(private packService: PackService) {}
 
-  ngOnInit() {
-    this.updateTitle();
+  ngOnInit(): void {
+    this.fetchPacks();
   }
 
-  updateTitle() {
-    const path = window.location.pathname;
-    let pageTitle = '';
-
-    if (path.includes('contact')) {
-      pageTitle = 'Contact';
-    } else if (path.includes('bienvenue')) {
-      pageTitle = 'Bienvenue';
-    } else if (path.includes('about')) {
-      pageTitle = 'À propos';
-    } else if (path === '/') {
-      pageTitle = 'Page d\'accueil';
-    }
-
-    this.titleService.setTitle(`${pageTitle} - MEKANIKS`);
+  fetchPacks(): void {
+    this.packService.getPacks().subscribe(
+      (data) => {
+        console.log('Données récupérées:', data);
+        this.packs = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des packs:', error);
+      }
+    );
   }
+
 
 
 }

@@ -8,6 +8,7 @@ import {CollectionsListComponent} from './pages/gestion-donnees/collections-list
 import {InscriptionClientComponent} from './pages/inscription-client/inscription-client.component';
 import {tokenguardChildGuard} from './guards/tokenguard/tokenguard-child.guard';
 import {tokenguardActivateGuard} from './guards/tokenguard/tokenguard-activate.guard';
+import {TableauBordComponent} from './pages/manager/tableau_bord/tableau-bord/tableau-bord.component';
 
 export const routes: Routes = [
 
@@ -32,7 +33,7 @@ export const routes: Routes = [
     ],
     children:[
       { path: 'collectionslist', component: CollectionsListComponent , title : 'CollectionsList'},
-      // { path: 'dashboard', component: ManagerDashboardComponent , title : 'Manager dashboard'},
+      { path: 'tableau_bord', component: TableauBordComponent , title : 'Tableau de bord'},
 
     ]
   },

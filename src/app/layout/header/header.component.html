@@ -10,10 +10,11 @@
             <nav class="hidden md:flex space-x-6">
               @if(useconnected==null){
 
-                <a href="#services" class="text-gray-700 hover:text-primary">Services</a>
-                <a href="#pricing" class="text-gray-700 hover:text-primary">Pricing</a>
-                <a href="#reviews" class="text-gray-700 hover:text-primary">Reviews</a>
-                <a routerLink="contact" class="text-gray-700 hover:text-primary">Contact</a>
+                <a routerLink="" class="text-gray-700 hover:text-primary">Accueil</a>
+                <a routerLink="list_packs" class="text-gray-700 hover:text-primary">Pack</a>
+                <a routerLink="list_services" class="text-gray-700 hover:text-primary">Services</a>
+
+<!--                <a routerLink="contact" class="text-gray-700 hover:text-primary">Contact</a>-->
               }
               @else if (useconnected?.role === "manager"){
                 <a routerLink="tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>

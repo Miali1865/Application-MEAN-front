@@ -8,7 +8,6 @@ import { environment } from '../../../environments/environment';
 export class PackService {
 
   private apiUrl = `${environment.apiUrl}/api/services/pack`;
-
   constructor(private http: HttpClient) {}
 
   getPacks() {

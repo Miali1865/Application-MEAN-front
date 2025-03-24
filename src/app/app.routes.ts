@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { PackListComponent } from './components/pack-list/pack-list.component';
-import { BienvenueComponent } from './pages/bienvenue/bienvenue.component';
+import { BienvenueComponent } from './pages/accueil/bienvenue/bienvenue.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CollectionsListComponent } from './pages/gestion-donnees/collections-list/collections-list.component';
 import { InscriptionClientComponent } from './pages/inscription-client/inscription-client.component';
@@ -14,6 +14,8 @@ import { CarMaintenanceComponent } from './pages/client/car-maintenance/car-main
 import { ServiceClientComponent } from './pages/client/service-client/service-client.component';
 import { ProfilClientComponent } from './pages/client/profil-client/profil-client.component';
 import {SamelayoutComponent} from './layout/samelayout/samelayout.component';
+import {ListServicesComponent} from './pages/accueil/list_services/list-services.component';
+import {ListPacksComponent} from './pages/accueil/list-packs/list-packs.component';
 
 export const routes: Routes = [
   // sans utilisateur connecter
@@ -22,7 +24,9 @@ export const routes: Routes = [
     component: SamelayoutComponent,
     children: [
       { path: '', component: BienvenueComponent, title: 'Accueil' },
-      { path: 'contact', component: ContactComponent },
+      { path: 'list_services', component: ListServicesComponent, title: 'Services' },
+      { path: 'list_packs', component: ListPacksComponent, title: 'Packs' },
+      // { path: 'contact', component: ContactComponent },
 
     ]
   },
@@ -38,7 +42,7 @@ export const routes: Routes = [
     ],
     children: [
       { path: '', component: ManagerPageComponent, title: 'Accueil Manager' },
-      { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
+      // { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
       { path: 'tableau_bord', component: TableauBordComponent, title: 'Tableau de bord' },
 
     ]

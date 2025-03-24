@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PackService} from '../../services/services/pack.service';
+import {PackService} from '../../../services/services/pack.service';
 
 @Component({
   selector: 'app-bienvenue',

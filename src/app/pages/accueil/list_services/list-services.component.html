@@ -1,0 +1,19 @@
+<app-img-header
+  [img_src]="'assets/img/photo3.jpg'"
+  [titre]="'Nos services'"
+  [description]="'Qualité et expertise : nos services pour votre auto.'"/>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  @for (i of services;track $index){
+    <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">
+      <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+        <i class="ri-car-fill text-primary ri-2x"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-3">{{i.name}}</h3>
+      <p class="text-gray-600 mb-4">{{i.description}}</p>
+      <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir plus →</button>
+    </div>
+
+  }
+
+</div>

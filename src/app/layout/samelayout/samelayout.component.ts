@@ -4,17 +4,17 @@ import {FooterComponent} from '../footer/footer.component';
 import {RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'app-layout-accueil',
+  selector: 'app-samelayout',
   imports: [
     HeaderComponent,
     FooterComponent,
     RouterOutlet
 
   ],
-  templateUrl: './layout-accueil.component.html',
+  templateUrl: './samelayout.component.html',
   standalone: true,
-  styleUrl: './layout-accueil.component.css'
+  styleUrl: './samelayout.component.css'
 })
-export class LayoutAccueilComponent {
+export class SamelayoutComponent {
 
 }

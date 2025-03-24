@@ -1,3 +1,8 @@
+manager : manager&#64;garage.com ; 123456
+<br>
+mecanicier : mecanicien&#64;garage.com ; 123456
+<br>
+cleint : client1&#64;garage.com ; 123456
 
 <div class="main">
   <section class="sign-in">
@@ -20,10 +25,9 @@
 
             </div>
             @if (!email?.valid && (email?.dirty || email?.touched)) {
-
               @if (email?.errors?.['required']) {
               <span style="color:red">Veuillez entrez votre email 😊</span>
-            }
+              }
             }
             <div class="form-group">
               <label for="password">

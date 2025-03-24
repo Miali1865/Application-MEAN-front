@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutAccueilComponent } from './layout-accueil.component';
+import { DropdownComponent } from './dropdown.component';
 
-describe('LayoutAccueilComponent', () => {
-  let component: LayoutAccueilComponent;
-  let fixture: ComponentFixture<LayoutAccueilComponent>;
+describe('DropdownComponent', () => {
+  let component: DropdownComponent;
+  let fixture: ComponentFixture<DropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutAccueilComponent]
+      imports: [DropdownComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LayoutAccueilComponent);
+    fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

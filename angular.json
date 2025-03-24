@@ -29,7 +29,7 @@
             ],
             "scripts":
             [
-
+              "src/assets/tailwind_cdn.js"
             ]
           },
           "configurations": {

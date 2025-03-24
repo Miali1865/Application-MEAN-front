@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderManagerComponent } from './header-manager.component';
+import { SamelayoutComponent } from './samelayout.component';
 
-describe('HeaderManagerComponent', () => {
-  let component: HeaderManagerComponent;
-  let fixture: ComponentFixture<HeaderManagerComponent>;
+describe('SamelayoutComponent', () => {
+  let component: SamelayoutComponent;
+  let fixture: ComponentFixture<SamelayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderManagerComponent]
+      imports: [SamelayoutComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderManagerComponent);
+    fixture = TestBed.createComponent(SamelayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

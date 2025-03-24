@@ -1,0 +1,92 @@
+<div class="container mx-auto px-6 py-10">
+
+    <!-- Section de bienvenue -->
+    <section class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-gray-900 mb-4">Bienvenue, cher Client !</h1>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">Gérez vos réparations, services et rendez-vous en un seul endroit. Restez informé et planifiez vos actions de manière efficace.</p>
+    </section>
+
+    <!-- Dashboard Principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+
+        <!-- Rapports des Services -->
+        <div class="space-y-6">
+            <div class="bg-white p-8 rounded-lg shadow-lg flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700">Réparations effectuées ce mois</h2>
+                    <p class="text-4xl font-extrabold text-gray-900">12</p>
+                </div>
+                <div class="text-5xl text-green-600">
+                    <i class="fas fa-car"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700">Révisions programmées</h2>
+                    <p class="text-4xl font-extrabold text-gray-900">35</p>
+                </div>
+                <div class="text-5xl text-blue-600">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mes Réparations -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Réparations Récentes</h3>
+            <ul class="space-y-4">
+                <li class="flex justify-between items-center">
+                    <span class="text-gray-700">Réparation #1234 - Toyota Corolla</span>
+                    <span class="text-gray-500 text-sm">25 Mars 2025</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span class="text-gray-700">Réparation #1235 - Honda Civic</span>
+                    <span class="text-gray-500 text-sm">24 Mars 2025</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span class="text-gray-700">Réparation #1236 - BMW Série 3</span>
+                    <span class="text-gray-500 text-sm">23 Mars 2025</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Deuxième Ligne de Contenu -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <!-- Mes Services -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Services Disponibles</h3>
+            <ul class="space-y-4">
+                <li class="text-gray-700">Réparation de véhicules</li>
+                <li class="text-gray-700">Entretien préventif</li>
+                <li class="text-gray-700">Vente de pièces détachées</li>
+            </ul>
+        </div>
+
+        <!-- Calendrier -->
+        <div class="container mx-auto p-8">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Calendrier des Rendez-vous</h3>
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function() {
+        // Initialisation de FullCalendar
+        console.log('alloooo');
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            }
+        });
+    });
+</script>

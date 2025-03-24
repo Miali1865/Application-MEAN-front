@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             }else if (userconnected.role =="mecanicien"){
               this.router.navigate(['manager/']);
             }else if (userconnected.role =="client"){
-              this.router.navigate(['accueil/']);
+              this.router.navigate(['client/']);
             }else {
               this.messagetoastService.showError("role undefined")
             }

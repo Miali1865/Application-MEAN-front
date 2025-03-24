@@ -11,7 +11,6 @@ import {PackService} from '../../services/services/pack.service';
 })
 export class BienvenueComponent implements OnInit {
   packs!: any[];
-
   constructor(private packService: PackService) {}
 
   ngOnInit(): void {

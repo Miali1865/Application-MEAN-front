@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutAccueilComponent } from './layout-accueil.component';
+import { SamelayoutComponent } from './samelayout.component';
 
-describe('LayoutAccueilComponent', () => {
-  let component: LayoutAccueilComponent;
-  let fixture: ComponentFixture<LayoutAccueilComponent>;
+describe('SamelayoutComponent', () => {
+  let component: SamelayoutComponent;
+  let fixture: ComponentFixture<SamelayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutAccueilComponent]
+      imports: [SamelayoutComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LayoutAccueilComponent);
+    fixture = TestBed.createComponent(SamelayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -19,6 +19,10 @@ import {ListPacksComponent} from './pages/accueil/list-packs/list-packs.componen
 import {MesVoituresComponent} from './pages/client/mes-voitures/mes-voitures.component';
 import {FacturationsComponent} from './pages/client/facturations/facturations.component';
 import {CalendrierComponent} from './pages/client/calendrier/calendrier.component';
+import {
+  GestionUtilisateursManagerComponent
+} from './pages/manager/gestion-utilisateurs-manager/gestion-utilisateurs-manager.component';
+import {FacturesManagerComponent} from './pages/manager/factures-manager/factures-manager.component';
 
 export const routes: Routes = [
   // sans utilisateur connecter
@@ -39,6 +43,7 @@ export const routes: Routes = [
     component: SamelayoutComponent,
     canActivateChild: [
       tokenguardChildGuard
+    //   todo : guard role
     ],
     canActivate: [
       tokenguardActivateGuard
@@ -47,6 +52,9 @@ export const routes: Routes = [
       { path: '', component: ManagerPageComponent, title: 'Accueil Manager' },
       // { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
       { path: 'tableau_bord', component: TableauBordComponent, title: 'Tableau de bord' },
+      { path: 'calendrier', component: TableauBordComponent, title: 'Calendrier' },
+      { path: 'facturations', component: FacturesManagerComponent, title: 'Factures' },
+      { path: 'utilisateurs', component: GestionUtilisateursManagerComponent, title: 'Factures' },
 
     ]
   },

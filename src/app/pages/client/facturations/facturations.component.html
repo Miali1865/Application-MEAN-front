@@ -1,1 +1,94 @@
-<p>facturations works!</p>
+<app-img-header
+  [img_src]="'assets/img/facturation.jpg'"
+  [titre]="'Vos factures'"
+  [description]="'Historisation de vos transactions'"/>
+
+if
+@if(mes_factures.length ==0){
+  <h2 class="text-3xl font-semibold text-center mt-4">Vous n'avez aucune transaction</h2>
+  <h2 class="text-center mb-4 text-gray-500">
+    Ici, vous pouvez retrouver les services et packs commandés, qu'ils soient non réglés ou payés.
+  </h2>
+}
+
+else
+<!-- Filtres -->
+<div class="px-6 py-4">
+  <div class="grid grid-cols-6 gap-4 mb-4">
+
+    <div>
+      <label for="filter-service" class="block text-gray-700 font-semibold mb-2">Nom service :</label>
+      <input type="text" id="filter-service" class="w-full p-2 border rounded-md" placeholder="Vidange , chang pneu ..."/>
+    </div>
+
+    <div>
+      <label for="filter-prix" class="block text-gray-700 font-semibold mb-2">Prix :</label>
+      <input type="number" id="filter-prix" class="w-full p-2 border rounded-md" min="0" placeholder="1000"/>
+    </div>
+
+
+    <!-- Recherche par date -->
+    <div>
+      <label for="filter-command-date" class="block text-gray-700 font-semibold mb-2">Date de commande :</label>
+      <input type="date" id="filter-command-date" class="w-full p-2 border rounded-md" />
+    </div>
+    <div>
+      <label for="filter-paye-date" class="block text-gray-700 font-semibold mb-2">Date de payement :</label>
+      <input type="date" id="filter-paye-date" class="w-full p-2 border rounded-md" />
+    </div>
+
+    <!-- Filtrer par statut -->
+    <div>
+      <label for="filter-status" class="block text-gray-700 font-semibold mb-2">Statut :</label>
+      <select id="filter-status" class="w-full p-2 border rounded-md">
+        <option value="all">Tous</option>
+        <option value="payé">Payé</option>
+        <option value="non payé">Non payé</option>
+      </select>
+    </div>
+
+
+  </div>
+
+  <!-- Tableau -->
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse bg-white text-left text-sm">
+      <thead class="bg-gray-200">
+      <tr>
+        <th class="px-4 py-2 border">ID</th>
+        <th class="px-4 py-2 border">Nom du Service</th>
+        <th class="px-4 py-2 border">Prix</th>
+        <th class="px-4 py-2 border">Date commande</th>
+        <th class="px-4 py-2 border">Date paiement</th>
+        <th class="px-4 py-2 border">Statut</th>
+      </tr>
+      </thead>
+      <tbody id="table-body">
+      <tr class="border">
+        <td class="px-4 py-2">1</td>
+        <td class="px-4 py-2">Révision complète</td>
+        <td class="px-4 py-2">150€</td>
+        <td class="px-4 py-2" data-date="2025-03-20">2025-03-20</td>
+        <td class="px-4 py-2">2025-03-22</td>
+        <td class="px-4 py-2"><span class="status text-green-600 bg-green-100 px-3 py-1 rounded-full" data-status="payé">Payé</span></td>
+      </tr>
+      <tr class="border">
+        <td class="px-4 py-2">2</td>
+        <td class="px-4 py-2">Changement d'huile</td>
+        <td class="px-4 py-2">50€</td>
+        <td class="px-4 py-2" data-date="2025-03-21">2025-03-21</td>
+        <td class="px-4 py-2">-</td>
+        <td class="px-4 py-2"><span class="status text-red-600 bg-red-100 px-3 py-1 rounded-full" data-status="non payé">Non payé</span></td>
+      </tr>
+      <tr class="border">
+        <td class="px-4 py-2">3</td>
+        <td class="px-4 py-2">Diagnostic</td>
+        <td class="px-4 py-2">30€</td>
+        <td class="px-4 py-2" data-date="2025-03-19">2025-03-19</td>
+        <td class="px-4 py-2">2025-03-20</td>
+        <td class="px-4 py-2"><span class="status text-green-600 bg-green-100 px-3 py-1 rounded-full" data-status="payé">Payé</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

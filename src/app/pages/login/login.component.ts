@@ -3,6 +3,7 @@ import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SigninupService} from '../../services/signinup/signinup.service';
 import {MessagetoastService} from '../../services/messagetoast/messagetoast.service';
+import {ExpiredtokenService} from '../../services/expiredtoken/expiredtoken.service';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +22,16 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private signinupService: SigninupService,
     private messagetoastService: MessagetoastService,
-    private router: Router
+    private router: Router,
+    protected expiredtokenservice:ExpiredtokenService
   ) {
 
   }
 
   ngOnInit() {
 
-    this.signinupService.removeUserlocalStorage()
+    this.signinupService.removeUserlocalStorage();
+    this.expiredtokenservice.resetExpiredToken();
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],

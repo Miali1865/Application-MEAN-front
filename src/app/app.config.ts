@@ -11,6 +11,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import {LoaderspinnerService} from './services/loaderspinner/loaderspinner.service';
 import {loaderspinnerInterceptor} from './interceptors/loaderspinner/loaderspinner.interceptor';
+import {authtokenInterceptor} from './interceptors/authtoken/authtoken.interceptor';
 
 export const appConfig = {
   providers: [
@@ -24,7 +25,7 @@ export const appConfig = {
     }),
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     provideHttpClient(
-      withInterceptors([loaderspinnerInterceptor])
+      withInterceptors([loaderspinnerInterceptor,authtokenInterceptor])
     ),
     provideRouter(routes),
   ],

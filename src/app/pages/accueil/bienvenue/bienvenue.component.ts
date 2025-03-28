@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PackService} from '../../../services/services/pack.service';
+import {PackService} from '../../../services/pack/pack.service';
 
 @Component({
   selector: 'app-bienvenue',
@@ -18,15 +18,15 @@ export class BienvenueComponent implements OnInit {
   }
 
   fetchPacks(): void {
-    this.packService.getPacks().subscribe(
-      (data) => {
-        console.log('Données récupérées:', data);
-        this.packs = data;
-      },
-      (error) => {
-        console.error('Erreur lors du chargement des packs:', error);
-      }
-    );
+    // this.packService.getPacks().subscribe(
+    //   (data) => {
+    //     console.log('Données récupérées:', data);
+    //     this.packs = data;
+    //   },
+    //   (error) => {
+    //     console.error('Erreur lors du chargement des packs:', error);
+    //   }
+    // );
   }
 
 

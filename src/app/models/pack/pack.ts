@@ -1,7 +1,5 @@
 import {ServicesReparation} from '../services_reparation/services-reparation';
-import {PackService} from '../../services/services/pack.service';
-import {Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {PackService} from '../../services/pack/pack.service';
 
 export class Pack {
   private _id: string | null;
@@ -9,6 +7,7 @@ export class Pack {
   private _description: string | null;
   private _services: ServicesReparation[] | null;
   // private static packService: PackService;
+  public _all_packages: any;
 
   constructor(id: string|null, name: string|null, description: string|null, services: ServicesReparation[]|null) {
     this._id = id?id:null;
@@ -17,31 +16,21 @@ export class Pack {
     this._services = services?services:null;
   }
 
-  // static getAll(): Observable<Pack[]> {
-  //   return Pack.packService.getPacks().pipe(
-  //     map(data => data.map(
-  //       (packs:
-  //          { name: string | null; description: string | null; }
-  //       ) => new Pack(null, packs.name, packs.description, null))),
-  //     catchError(error => {
-  //       // console.error('Erreur lors du chargement des packs:', error);
-  //       throw error; // Propager l'erreur
-  //     })
-  //   );
-  // }
+  fetchservices(servicepack : PackService){
+    if (this.services == null){
+      servicepack.getpacks_services$(this._id).subscribe({
+        next: (data: ServicesReparation[]) => {
+          this.services = data;
+          console.log(`Services chargés pour le pack ${this.name}:`, this.services);
+        },
+        error: (err) => {
+          console.error(`Erreur lors du chargement des services du pack ${this.name}`, err);
+        }
+      });
 
-
-  static getAll_name_description$(packService : PackService): Observable<Pack[]> {
-    return packService.getPacks().pipe(
-      map(data => data.map(
-        (packs:
-           { name: string | null; description: string | null; }
-        ) => new Pack(null, packs.name, packs.description, null))),
-      catchError(error => {
-        throw error; // Propager l'erreur
-      })
-    );
+    }
   }
+
 
   get id(): string | null {
     return this._id;

@@ -1,0 +1,109 @@
+<app-img-header
+  [img_src]="'assets/img/photo5.jpg'"
+  [titre]="'Vos voitures enregistrer'"
+  [description]="'Vos pouvez voir la liste de vos voiture, ainsi que leurs historique de reparation'"/>
+
+@if(mes_voitures.length ==0){
+  <h2 class="text-3xl font-semibold text-center mt-4">Vous n'avez aucune voiture</h2>
+  <h2 class="text-center mb-4 text-gray-500">Enregistrez vos véhicules pour planifier des rendez-vous d'entretien et consulter l'historique des réparations.</h2>
+  <div style="text-align: center;" class="mb-12">
+    <p-button label="Ajouter voiture + " severity="info" (click)="showDialog()"  />
+  </div>
+}@else{
+  <h2 class="text-3xl font-semibold text-center mt-4">
+    Carnet d'entretien
+  </h2>
+  <h2 class="text-center mb-4 text-gray-500">
+    Sélectionnez votre voiture pour l'entretien ou pour consulter l'historique des réparations.
+  </h2>
+  <div style="text-align: center;" class="mb-12">
+    <p-button label="Ajouter voiture + " severity="info" (click)="showDialog()"  />
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-4">
+  @for (i of mes_voitures;track $index){
+    <div class="max-w-lg bg-white rounded-lg shadow-lg overflow-hidden service-card" (click)="showDialog_historique(i)">
+      <div class="flex">
+        <div class="w-1/3">
+          <img class="w-full h-full object-cover rounded-l-lg" src="assets/img/photo3.jpg" alt="..." />
+        </div>
+        <div class="w-2/3 p-4">
+          <h4 class="text-lg font-semibold">{{i.model}} <span class="text-grey">({{i.typeOfCar}})</span>
+          </h4>
+          <p class="text-gray-700 mt-2">
+            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+          </p>
+          <p class="text-sm text-gray-500 mt-2">Last updated 3 mins ago</p>
+        </div>
+      </div>
+    </div>
+  }
+  </div>
+}
+<!---->
+<p-dialog header="Historique entretient {{voiture_selected?.model}}" [modal]="true" [(visible)]="visible_historique" [style]="{ width: '45rem' }">
+
+  <ul class="list-group">
+<!--    @for (i of pack_selected.services;track $index){-->
+      <li class="list-group-item d-flex justify-content-between border-b">Entretient
+        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">
+              Duree
+        </span>
+      </li>
+<!--    }-->
+  </ul>
+
+
+  <div class="flex justify-end gap-2">
+    <p-button label="Fermer" severity="secondary" (click)="visible_historique = false ; voiture_selected = null" />
+  </div>
+
+</p-dialog>
+
+<!--Modal enregistrement-->
+<p-dialog header="Enregistrer votre nouvelle voiture" [modal]="true" [(visible)]="visible" [style]="{ width: '45rem' }">
+  <span class="p-text-secondary block mb-8">Veuillez entrer ces informations.</span>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="flex items-center gap-4 mb-4">
+      <label for="brand" class="font-semibold w-24">Marque</label>
+      <select formControlName="brand" id="brand" required class="flex-auto" pInputText>
+          @for (i of brands;track $index){
+            <option [value]="i._id">{{i.name}}</option>
+          }
+      </select>
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+      <label for="typeOfCar" class="font-semibold w-24">Type</label>
+      <select formControlName="typeOfCar" id="typeOfCar" required class="flex-auto" pInputText>
+        @for (i of typeofcars;track $index){
+          <option [value]="i._id">{{i.name}}</option>
+        }
+
+      </select>
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+      <label for="model" class="font-semibold w-24">Modèle</label>
+      <input pInputText id="model" formControlName="model" class="flex-auto" autocomplete="off" required />
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+      <label for="year" class="font-semibold w-24">Année fabrication</label>
+      <input pInputText id="year" type="number" formControlName="year" class="flex-auto" autocomplete="off" min="1800" required placeholder="2000"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+      <label for="plateNumber" class="font-semibold w-30">Immatriculation</label>
+      <input pInputText id="plateNumber" formControlName="plateNumber" class="flex-auto" autocomplete="off" required />
+    </div>
+
+    {{form.errors}}
+
+    <div class="flex justify-end gap-2">
+      <p-button label="Annuler" severity="secondary" (click)="visible = false" />
+      <p-button label="Enregistrer" type="submit" [disabled]="!form.valid" />
+    </div>
+  </form>
+</p-dialog>

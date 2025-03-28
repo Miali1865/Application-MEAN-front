@@ -16,6 +16,9 @@ import { ProfilClientComponent } from './pages/client/profil-client/profil-clien
 import {SamelayoutComponent} from './layout/samelayout/samelayout.component';
 import {ListServicesComponent} from './pages/accueil/list_services/list-services.component';
 import {ListPacksComponent} from './pages/accueil/list-packs/list-packs.component';
+import {MesVoituresComponent} from './pages/client/mes-voitures/mes-voitures.component';
+import {FacturationsComponent} from './pages/client/facturations/facturations.component';
+import {CalendrierComponent} from './pages/client/calendrier/calendrier.component';
 
 export const routes: Routes = [
   // sans utilisateur connecter
@@ -66,8 +69,9 @@ export const routes: Routes = [
       { path: 'carnet', component: CarMaintenanceComponent, title: 'Carnet d\'entretien' },
       { path: 'service', component: ServiceClientComponent, title: 'Demande de service' },
       { path: 'profil', component: ProfilClientComponent, title: 'Information du client' },
-      { path: 'facturation', component: ProfilClientComponent, title: 'Mes factures' },
-      { path: 'services', component: ProfilClientComponent, title: 'Hitoriques services' },
+      { path: 'facturations', component: FacturationsComponent, title: 'Mes factures' },
+      { path: 'calendrier', component: CalendrierComponent, title: 'Mon calendrier' },
+      { path: 'voiture', component: MesVoituresComponent, title: 'Mes voitures' },
     ]
   },
 

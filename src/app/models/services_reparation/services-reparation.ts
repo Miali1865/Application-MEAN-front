@@ -12,7 +12,6 @@ export class ServicesReparation {
     this._basePrice = basePrice;
     this._estimatedTime = estimatedTime;
   }
-
   get id(): string | null {
     return this._id;
   }

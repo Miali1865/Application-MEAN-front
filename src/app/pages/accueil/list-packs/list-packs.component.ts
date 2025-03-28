@@ -1,26 +1,29 @@
 import {Component, OnInit} from '@angular/core';
 import {ImgHeaderComponent} from '../../../components/img-header/img-header.component';
-import {PackService} from '../../../services/services/pack.service';
+import {PackService} from '../../../services/pack/pack.service';
 import {Pack} from '../../../models/pack/pack';
-import {Observable} from 'rxjs';
+import {Dialog} from 'primeng/dialog';
+import {Button} from 'primeng/button';
 
 @Component({
   selector: 'app-list-packs',
   imports: [
-    ImgHeaderComponent
+    ImgHeaderComponent,
+    Dialog,
+    Button,
   ],
   templateUrl: './list-packs.component.html',
   standalone: true,
   styleUrl: './list-packs.component.css'
 })
 export class ListPacksComponent implements OnInit{
-  packs: Pack[] =[];
+  packs: Pack[]=[];
+  visible: boolean = false;
+  pack_selected:Pack | null=null
   constructor(private packService: PackService) {}
 
   ngOnInit(): void {
-    // this.fetchPacks();
-
-    Pack.getAll_name_description$(this.packService).subscribe(
+    this.packService.getPacks$().subscribe(
       (data) => {
         console.log('Données récupérées:', data);
         this.packs = data;
@@ -31,21 +34,16 @@ export class ListPacksComponent implements OnInit{
       }
     );
 
-    // this.packs = Pack.getAll(this.packService,this.packs)
-    // console.log(typeof this.packs)
   }
 
+  showDialog(i:Pack) {
+    if (i.services == null){
+      i.fetchservices(this.packService)
+      console.log("fetchservices")
+    }
+    this.pack_selected=i;
+    this.visible = true;
+  }
 
-  // fetchPacks(): void {
-  //   this.packService.getPacks().subscribe(
-  //     (data) => {
-  //       console.log('Données récupérées:', data);
-  //       this.packs = data;
-  //     },
-  //     (error) => {
-  //       console.error('Erreur lors du chargement des packs:', error);
-  //     }
-  //   );
-  // }
 
 }

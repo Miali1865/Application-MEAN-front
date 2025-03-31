@@ -31,7 +31,7 @@ export class SigninupService {
 
         const userData = this.decodeToken(result['token']);
         console.log(userData)
-        const user = new User(userData.name, userData.email, userData.role);
+        const user = new User(userData.id,userData.name, userData.email, userData.role);
         console.log("user")
         console.log(user)
         localStorage.setItem('user', JSON.stringify(user)); // Convertit l'objet en JSON
@@ -45,8 +45,8 @@ export class SigninupService {
     // console.log('ary ato ndray ary ',userlocalStorage);
     if (userlocalStorage) {
       const objuser = JSON.parse(userlocalStorage)
-      // const user = new User(objuser.name, objuser.email, objuser.role); -> code balita nefa mialivola tsy mahazo an'ilay user 
-      const user = new User(objuser._name, objuser._email, objuser._role); // code mialivola afaka fafana raha mandeha ilay ambony
+      // const user = new User(objuser.name, objuser.email, objuser.role); -> code balita nefa mialivola tsy mahazo an'ilay user
+      const user = new User(objuser._id,objuser._name, objuser._email, objuser._role); // code mialivola afaka fafana raha mandeha ilay ambony
       // console.log('ary ato ndray ary ',user);
       return user;
     } else {
@@ -65,7 +65,7 @@ export class SigninupService {
 
         const userData = this.decodeToken(result['token']);
         console.log(userData)
-        const user = new User(userData.name, userData.email, userData.role);
+        const user = new User(userData.id,userData.name, userData.email, userData.role);
         localStorage.setItem('user', JSON.stringify(user)); // Convertit l'objet en JSON
       },
 

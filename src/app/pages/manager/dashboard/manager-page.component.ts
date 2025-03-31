@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-manager-page',
   imports: [],
   templateUrl: './manager-page.component.html',
+  standalone: true,
   styleUrl: './manager-page.component.css'
 })
 export class ManagerPageComponent implements OnInit {

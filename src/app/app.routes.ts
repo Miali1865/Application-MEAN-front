@@ -1,19 +1,25 @@
 import { Routes } from '@angular/router';
-import { ContactComponent } from './contact/contact.component';
 import { PackListComponent } from './components/pack-list/pack-list.component';
-import { BienvenueComponent } from './pages/bienvenue/bienvenue.component';
+import { BienvenueComponent } from './pages/accueil/bienvenue/bienvenue.component';
 import { LoginComponent } from './pages/login/login.component';
-import { CollectionsListComponent } from './pages/gestion-donnees/collections-list/collections-list.component';
 import { InscriptionClientComponent } from './pages/inscription-client/inscription-client.component';
 import { tokenguardChildGuard } from './guards/tokenguard/tokenguard-child.guard';
 import { tokenguardActivateGuard } from './guards/tokenguard/tokenguard-activate.guard';
-import { TableauBordComponent } from './pages/manager/tableau_bord/tableau-bord/tableau-bord.component';
 import { ManagerPageComponent } from './pages/manager/dashboard/manager-page.component';
 import { AccueilClientComponent } from './pages/client/accueil-client/accueil-client.component';
 import { CarMaintenanceComponent } from './pages/client/car-maintenance/car-maintenance.component';
 import { ServiceClientComponent } from './pages/client/service-client/service-client.component';
 import { ProfilClientComponent } from './pages/client/profil-client/profil-client.component';
 import {SamelayoutComponent} from './layout/samelayout/samelayout.component';
+import {ListServicesComponent} from './pages/accueil/list_services/list-services.component';
+import {ListPacksComponent} from './pages/accueil/list-packs/list-packs.component';
+import {MesVoituresComponent} from './pages/client/mes-voitures/mes-voitures.component';
+import {FacturationsComponent} from './pages/client/facturations/facturations.component';
+import {CalendrierComponent} from './pages/client/calendrier/calendrier.component';
+import {
+  GestionUtilisateursManagerComponent
+} from './pages/manager/gestion-utilisateurs-manager/gestion-utilisateurs-manager.component';
+import {FacturesManagerComponent} from './pages/manager/factures-manager/factures-manager.component';
 
 export const routes: Routes = [
   // sans utilisateur connecter
@@ -22,7 +28,9 @@ export const routes: Routes = [
     component: SamelayoutComponent,
     children: [
       { path: '', component: BienvenueComponent, title: 'Accueil' },
-      { path: 'contact', component: ContactComponent },
+      { path: 'list_services', component: ListServicesComponent, title: 'Services' },
+      { path: 'list_packs', component: ListPacksComponent, title: 'Packs' },
+      // { path: 'contact', component: ContactComponent },
 
     ]
   },
@@ -32,14 +40,18 @@ export const routes: Routes = [
     component: SamelayoutComponent,
     canActivateChild: [
       tokenguardChildGuard
+    //   todo : guard role
     ],
     canActivate: [
       tokenguardActivateGuard
     ],
     children: [
       { path: '', component: ManagerPageComponent, title: 'Accueil Manager' },
-      { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
-      { path: 'tableau_bord', component: TableauBordComponent, title: 'Tableau de bord' },
+      // { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
+      { path: '', component: ManagerPageComponent, title: 'Tableau de bord' },
+      { path: 'calendrier', component: ManagerPageComponent, title: 'Calendrier' },
+      { path: 'facturations', component: FacturesManagerComponent, title: 'Factures' },
+      { path: 'utilisateurs', component: GestionUtilisateursManagerComponent, title: 'Factures' },
 
     ]
   },
@@ -62,8 +74,9 @@ export const routes: Routes = [
       { path: 'carnet', component: CarMaintenanceComponent, title: 'Carnet d\'entretien' },
       { path: 'service', component: ServiceClientComponent, title: 'Demande de service' },
       { path: 'profil', component: ProfilClientComponent, title: 'Information du client' },
-      { path: 'facturation', component: ProfilClientComponent, title: 'Mes factures' },
-      { path: 'services', component: ProfilClientComponent, title: 'Hitoriques services' },
+      { path: 'facturations', component: FacturationsComponent, title: 'Mes factures' },
+      { path: 'calendrier', component: CalendrierComponent, title: 'Mon calendrier' },
+      { path: 'voiture', component: MesVoituresComponent, title: 'Mes voitures' },
     ]
   },
 

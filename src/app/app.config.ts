@@ -11,11 +11,15 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import {LoaderspinnerService} from './services/loaderspinner/loaderspinner.service';
 import {loaderspinnerInterceptor} from './interceptors/loaderspinner/loaderspinner.interceptor';
+import {authtokenInterceptor} from './interceptors/authtoken/authtoken.interceptor';
+import {ExpiredtokenService} from './services/expiredtoken/expiredtoken.service';
+import {expiredtokenInterceptor} from './interceptors/expiredtoken/expiredtoken.interceptor';
 
 export const appConfig = {
   providers: [
     MessageService,
     LoaderspinnerService,
+    ExpiredtokenService,
     provideAnimationsAsync(), // Configuration recommandée pour Angular 19
     providePrimeNG({
       theme: {
@@ -24,7 +28,7 @@ export const appConfig = {
     }),
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     provideHttpClient(
-      withInterceptors([loaderspinnerInterceptor])
+      withInterceptors([loaderspinnerInterceptor,authtokenInterceptor, expiredtokenInterceptor])
     ),
     provideRouter(routes),
   ],

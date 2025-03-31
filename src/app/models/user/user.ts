@@ -1,15 +1,25 @@
 // ng generate class user
 
 export class User {
+  private _id: string;
   private _name: string;
   private _email: string;
   private _role: string;
 
 
-  constructor(name: string, email: string, role: string) {
+  constructor(id:string, name: string, email: string, role: string) {
+    this._id = id;
     this._name = name;
     this._email = email;
     this._role = role;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
   }
 
   get name(): string {
@@ -17,7 +27,7 @@ export class User {
   }
 
   set name(value: string) {
-    this._name = value; 
+    this._name = value;
   }
 
   get email(): string {

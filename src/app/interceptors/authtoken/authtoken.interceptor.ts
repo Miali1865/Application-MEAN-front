@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
 export const authtokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const apiUrl = `${environment.apiUrl}/api/auth/`;
+  // const apiUrl = `${environment.apiUrl}/api/auth/`;
 
   // 1️⃣ Récupérer le token d'authentification
   const token = localStorage.getItem('token');
@@ -25,6 +25,7 @@ export const authtokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   // 4️⃣ Ajouter le token aux autres requêtes si disponible
   if (token) {
+    console.log("authtokenInterceptor add token")
     const clonedRequest = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`
@@ -33,5 +34,4 @@ export const authtokenInterceptor: HttpInterceptorFn = (req, next) => {
     return next(clonedRequest);
   }
   return next(req);
-//   TODO: test
 };

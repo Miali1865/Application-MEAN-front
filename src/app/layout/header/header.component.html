@@ -10,22 +10,29 @@
             <nav class="hidden md:flex space-x-6">
               @if(useconnected==null){
 
-                <a href="#services" class="text-gray-700 hover:text-primary">Services</a>
-                <a href="#pricing" class="text-gray-700 hover:text-primary">Pricing</a>
-                <a href="#reviews" class="text-gray-700 hover:text-primary">Reviews</a>
-                <a routerLink="contact" class="text-gray-700 hover:text-primary">Contact</a>
+                <a routerLink="" class="text-gray-700 hover:text-primary">Accueil</a>
+                <a routerLink="list_packs" class="text-gray-700 hover:text-primary">Pack</a>
+                <a routerLink="list_services" class="text-gray-700 hover:text-primary">Services</a>
+
+<!--                <a routerLink="contact" class="text-gray-700 hover:text-primary">Contact</a>-->
               }
               @else if (useconnected?.role === "manager"){
                 <a routerLink="tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>
+                <a routerLink="facturations" class="text-gray-700 hover:text-primary">Facturations</a>
+                <a routerLink="calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
+                <a routerLink="utilisateurs" class="text-gray-700 hover:text-primary">Utilisateurs</a>
+
               }
               @else if (useconnected?.role === "mecanicien"){
                 <a routerLink="tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>
               }
               @else if (useconnected?.role === "client"){
                 <a href="/client" class="text-gray-700 hover:text-primary">Accueil</a>
+                <a href="/client/voiture" class="text-gray-700 hover:text-primary">Mes_voitures</a>
                 <a href="/client/service" class="text-gray-700 hover:text-primary">Services</a>
                 <a href="/client/carnet" class="text-gray-700 hover:text-primary">Carnets d'entretien</a>
-                <a class="text-gray-700 hover:text-primary">Factures</a>
+                <a href="/client/facturations" class="text-gray-700 hover:text-primary">Factures</a>
+                <a href="/client/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
                 <a href="/client/profil" class="text-gray-700 hover:text-primary">Mon Profil</a>
               }
             </nav>

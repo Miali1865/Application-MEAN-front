@@ -4,3 +4,11 @@
 </div>
 <router-outlet></router-outlet>
 
+<p-dialog [modal]="true" [visible]="need_reconnexion()" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Session expirer veillez vous reconnecter</span>
+  <div class="flex justify-end gap-2">
+    <a routerLink="login">
+      <p-button label="Connexion"/>
+    </a>
+  </div>
+</p-dialog>

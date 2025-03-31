@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableauBordComponent } from './tableau-bord.component';
+import { FacturationsComponent } from './facturations.component';
 
-describe('TableauBordComponent', () => {
-  let component: TableauBordComponent;
-  let fixture: ComponentFixture<TableauBordComponent>;
+describe('FacturationsComponent', () => {
+  let component: FacturationsComponent;
+  let fixture: ComponentFixture<FacturationsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableauBordComponent]
+      imports: [FacturationsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableauBordComponent);
+    fixture = TestBed.createComponent(FacturationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
-// import interactionPlugin from '@fullcalendar/interaction';
-import multiMonthPlugin from '@fullcalendar/multimonth';
-import dayGridMonth from '@fullcalendar/multimonth';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
-// import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import {Dialog} from 'primeng/dialog';
+import {DatePipe} from '@angular/common';
+import {SigninupService} from '../../../services/signinup/signinup.service';
+import {User} from '../../../models/user/user';
 @Component({
   selector: 'app-calendrier',
   imports: [
     FullCalendarModule,
+    Dialog,
+    DatePipe,
   ],
   templateUrl: './calendrier.component.html',
   standalone: true,
@@ -21,23 +23,20 @@ export class CalendrierComponent implements OnInit {
   visible_event: boolean = false;
   date_selected_event: string | null = '';
   date_selected_event_title: string | null = '';
+  signinupService = inject(SigninupService)
+  useconnected!:User|null;
 
 
   ngOnInit() {
+    this.useconnected= this.signinupService.getuserconnected()
 
+  //   todo fetch event taches
   }
 
   handleEventClick(info: any) {
-    // Afficher la description lorsque l'événement est cliqué
-    // alert('absence: ' + info.event.title +
-    //   '\nDescription: ' + info.event.extendedProps.description);
-
     this.visible_event = true;
     this.date_selected_event = info.event.start;
     this.date_selected_event_title = info.event.title;
-
-
-
   }
 
 
@@ -51,10 +50,12 @@ export class CalendrierComponent implements OnInit {
     // initialView: 'multiMonthYear', // Vue initiale
     // plugins: [interactionPlugin, multiMonthPlugin,bootstrap5Plugin ],
     // themeSystem: 'bootstrap5',
+
     // // ny event
     // // dateClick: this.handleDateClick.bind(this), // Fonction de gestion du clic sur une date
-    // // eventClick: this.handleEventClick.bind(this),
+    eventClick: this.handleEventClick.bind(this),
     // // prevYear: this.handelPrevYearClick.bind(this),
+
     // headerToolbar: {
     //   left: '',
     //   center: 'title',

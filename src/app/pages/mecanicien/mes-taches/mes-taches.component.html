@@ -1,0 +1,83 @@
+<app-img-header
+  [img_src]="'assets/img/taches2.jpg'"
+  [titre]="'Vos taches assignes'"
+  [description]="'Historisation de vos taches'"/>
+
+
+<div class="px-6 py-4">
+  <div class="grid grid-cols-6 gap-4 mb-4">
+
+    <div>
+      <label for="filter-service" class="block text-gray-700 font-semibold mb-2">Nom service :</label>
+      <input type="text" id="filter-service" class="w-full p-2 border rounded-md" placeholder="Vidange , chang pneu ..."/>
+    </div>
+
+    <div>
+      <label for="client" class="block text-gray-700 font-semibold mb-2">Client ou IDclient</label>
+      <input type="text" id="client" class="w-full p-2 border rounded-md" placeholder="Jean claude ... "/>
+    </div>
+
+
+    <!-- Recherche par date -->
+    <div>
+      <label for="filter-command-date" class="block text-gray-700 font-semibold mb-2">Date-heure :</label>
+      <input type="datetime-local" id="filter-command-date" class="w-full p-2 border rounded-md" />
+    </div>
+
+    <!-- Filtrer par statut -->
+    <div>
+      <label for="filter-status" class="block text-gray-700 font-semibold mb-2">Statut :</label>
+      <select id="filter-status" class="w-full p-2 border rounded-md">
+        <option value="all">Pas commencer</option>
+        <option value="all">En cours</option>
+        <option value="payé">Terminée</option>
+      </select>
+    </div>
+
+
+  </div>
+
+  <!-- Tableau -->
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse bg-white text-left text-sm">
+      <thead class="bg-gray-200">
+      <tr>
+        <th class="px-4 py-2 border">ID</th>
+        <th class="px-4 py-2 border">Nom du Service</th>
+        <th class="px-4 py-2 border">Client</th>
+        <th class="px-4 py-2 border">Date-Heure </th>
+        <th class="px-4 py-2 border">Statut</th>
+      </tr>
+      </thead>
+      <tbody id="table-body">
+      <tr class="border">
+        <td class="px-4 py-2">1</td>
+        <td class="px-4 py-2">Révision complète</td>
+        <td class="px-4 py-2">Jean Jacques (client7896161)</td>
+        <td class="px-4 py-2">2025-03-22</td>
+        <td class="px-4 py-2">
+          <span class="status text-green-600 bg-green-100 px-3 py-1 rounded-full" data-status="Terminée">Terminée</span>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="px-4 py-2">1</td>
+        <td class="px-4 py-2">Révision complète</td>
+        <td class="px-4 py-2">Jean Jacques (client7896161)</td>
+        <td class="px-4 py-2">2025-03-22</td>
+        <td class="px-4 py-2">
+          <span class="status text-blue-600 bg-blue-100 px-3 py-1 rounded-full" data-status="En cours">En cours</span>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="px-4 py-2">1</td>
+        <td class="px-4 py-2">Révision complète</td>
+        <td class="px-4 py-2">Jean Jacques (client7896161)</td>
+        <td class="px-4 py-2">2025-03-22</td>
+        <td class="px-4 py-2">
+          <span class="status text-red-600 bg-red-100 px-3 py-1 rounded-full" data-status="non payé">Pas commencer</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -3,3 +3,45 @@
     <!--                   (eventRender)="renderCustomIcon($event)"-->
   </full-calendar>
 </div>
+
+<!--this.handleEventClick.bind(this),-->
+<p-dialog header="{{this.date_selected_event | date : 'dd MMMM yyyy'}}"
+          [modal]="true" [(visible)]="visible_event"
+          [style]="{ width: '70rem' }"
+          [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+          [maximizable]="true"
+          (close)="date_selected_event = null ; date_selected_event_title = null">
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse bg-white text-left text-sm">
+      <thead class="bg-gray-200">
+      <tr>
+        <th class="px-4 py-2 border">ID</th>
+        <th class="px-4 py-2 border">Heure</th>
+        <th class="px-4 py-2 border">Service</th>
+        <th class="px-4 py-2 border">Mecanicien</th>
+
+        @if (useconnected?.role != "client"){
+          <th class="px-4 py-2 border">Client</th>
+        }
+
+      </tr>
+      </thead>
+      <tbody id="table-body">
+      <tr class="border">
+        <td class="px-4 py-2">1</td>
+        <td class="px-4 py-2" data-date="2025-03-20">8 : 00</td>
+        <td class="px-4 py-2">Révision complète</td>
+        <td class="px-4 py-2">Roger Floriant</td>
+
+        @if (useconnected?.role != "client"){
+          <td class="px-4 py-2">
+            Client 1
+          </td>
+        }
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</p-dialog>
+

@@ -20,6 +20,8 @@ import {
   GestionUtilisateursManagerComponent
 } from './pages/manager/gestion-utilisateurs-manager/gestion-utilisateurs-manager.component';
 import {FacturesManagerComponent} from './pages/manager/factures-manager/factures-manager.component';
+import {MesTachesComponent} from './pages/mecanicien/mes-taches/mes-taches.component';
+import {DashboardmecanicienComponent} from './pages/mecanicien/dashboardmecanicien/dashboardmecanicien.component';
 
 export const routes: Routes = [
   // sans utilisateur connecter
@@ -48,7 +50,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: ManagerPageComponent, title: 'Accueil Manager' },
       // { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
-      { path: '', component: ManagerPageComponent, title: 'Tableau de bord' },
+      { path: 'tableau_bord', component: ManagerPageComponent, title: 'Tableau de bord' },
       { path: 'calendrier', component: ManagerPageComponent, title: 'Calendrier' },
       { path: 'facturations', component: FacturesManagerComponent, title: 'Factures' },
       { path: 'utilisateurs', component: GestionUtilisateursManagerComponent, title: 'Factures' },
@@ -57,7 +59,22 @@ export const routes: Routes = [
   },
 
   // mecanicien
-
+  {
+    path: 'mecanicien',
+    component: SamelayoutComponent,
+    canActivateChild: [
+      tokenguardChildGuard
+      //   todo : guard role
+    ],
+    canActivate: [
+      tokenguardActivateGuard
+    ],
+    children: [
+      { path: 'tableau_bord', component: DashboardmecanicienComponent, title: 'Tableau de bord' },
+      { path: 'calendrier', component: CalendrierComponent, title: 'Mon calendrier' },
+      { path: 'liste-taches', component: MesTachesComponent, title: 'Mes taches' },
+    ]
+  },
 
   // client
   {

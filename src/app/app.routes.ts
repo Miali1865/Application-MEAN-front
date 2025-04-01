@@ -23,6 +23,7 @@ import {FacturesManagerComponent} from './pages/manager/factures-manager/facture
 import {MesTachesComponent} from './pages/mecanicien/mes-taches/mes-taches.component';
 import {DashboardmecanicienComponent} from './pages/mecanicien/dashboardmecanicien/dashboardmecanicien.component';
 import {AllVoituresComponent} from './pages/manager/all-voitures/all-voitures.component';
+import {AllMecaniciensComponent} from './pages/manager/all-mecaniciens/all-mecaniciens.component';
 
 export const routes: Routes = [
   // sans utilisateur connecter
@@ -56,6 +57,7 @@ export const routes: Routes = [
       { path: 'facturations', component: FacturesManagerComponent, title: 'Factures' },
       { path: 'utilisateurs', component: GestionUtilisateursManagerComponent, title: 'Factures' },
       { path: 'all_voitures', component: AllVoituresComponent, title: 'Voitures' },
+      { path: 'all_mecaniciens', component: AllMecaniciensComponent, title: 'Mécanicien' },
 
     ]
   },

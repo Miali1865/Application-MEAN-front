@@ -3,14 +3,18 @@
 export class User {
   private _id: string;
   private _name: string;
-  private _email: string;
+  private _email: string|null;
   private _role: string;
 
 
-  constructor(id:string, name: string, email: string, role: string) {
+  constructor(id:string, name: string, email: string | null, role: string) {
     this._id = id;
     this._name = name;
-    this._email = email;
+    if (email){
+      this._email = email;
+    }else {
+      this._email = null;
+    }
     this._role = role;
   }
 
@@ -30,7 +34,8 @@ export class User {
     this._name = value;
   }
 
-  get email(): string {
+
+  get email(): string | null {
     return this._email;
   }
 

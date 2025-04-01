@@ -96,6 +96,25 @@ export class MesVoituresService {
       )
   }
 
+  getAllVoitures$() {
+    console.log("getAllVoitures$")
+    return this.http.get<{ _id: string, client: {
+        "_id":string,"name":string,"role":string
+      },brand: string,typeOfCar:string,model:string,year:number, plateNumber: string }[]>
+    (this.apiUrl+"car/client/")
+      .pipe(
+        map(data => {
+          console.log(data)
+          return data;
+        }),
+        catchError(error => {
+          console.error("Erreur lors de getAllVoitures$ : ", error);
+          return throwError(() => new Error("Erreur lors de getMesVoitures$"));
+        })
+      )
+  }
+
+
   enregistrer_voiture$(
     voiture_params: { client: string | undefined; model: any;  year: any; typeOfCar: any; brand: any; plateNumber: any }
   ) {

@@ -4,6 +4,7 @@ import {PackService} from '../../../services/pack/pack.service';
 import {Pack} from '../../../models/pack/pack';
 import {Dialog} from 'primeng/dialog';
 import {Button} from 'primeng/button';
+import {TitleDescriptionComponent} from '../../../components/title-description/title-description.component';
 
 @Component({
   selector: 'app-list-packs',
@@ -11,6 +12,7 @@ import {Button} from 'primeng/button';
     ImgHeaderComponent,
     Dialog,
     Button,
+    TitleDescriptionComponent,
   ],
   templateUrl: './list-packs.component.html',
   standalone: true,

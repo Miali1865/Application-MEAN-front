@@ -10,107 +10,180 @@
 </section>
 
 <section id="services" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-<!--        <a routerLink="/packs" class="bg-primary text-white px-6 py-3 rounded hover:bg-primary/80 transition">-->
-<!--          Voir les Packs-->
-<!--        </a>-->
-<!--        <h2 class="text-3xl font-bold text-center mb-12">Nos services</h2>-->
-
-<!--todo atsaraina-->
-      <section id="hero">
-        <h2>Des prestations de qualité pour tous types de véhicules</h2>
-        <p>Que vous ayez une voiture, une moto, un 4x4 ou un camion, nous avons les solutions adaptées.</p>
-        <a href="#services" class="btn">Découvrir nos services</a>
+  <div class="container mx-auto px-4">
+      <!-- Hero Section with background image -->
+      <section id="hero" class="relative bg-gray-900 text-white rounded-lg overflow-hidden mb-16">
+          <div class="absolute inset-0">
+              <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=500&q=80" 
+                   alt="Garage automobile professionnel" 
+                   class="w-full h-full object-cover opacity-50">
+          </div>
+          <div class="relative z-10 px-8 py-20 text-center">
+              <h2 class="text-4xl font-bold mb-4">Des prestations de qualité pour tous types de véhicules</h2>
+              <p class="text-xl mb-8 max-w-2xl mx-auto">Que vous ayez une voiture, une moto, un 4x4 ou un camion, nous avons les solutions adaptées à vos besoins.</p>
+              <a href="/accueil/list_services" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full inline-block transition duration-300">Découvrir nos services</a>
+          </div>
       </section>
 
-      <section id="services">
-        <h2>Nos Services</h2>
-        <div class="service">
-          <h3>Entretien Express</h3>
-          <p>Vidange, filtres, pression des pneus et bien plus pour un véhicule toujours performant.</p>
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="py-16 bg-gray-50 mb-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Ce que nos clients disent</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Découvrez les témoignages de ceux qui nous ont fait confiance pour l'entretien de leur véhicule.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" 
+                                alt="Client satisfait" 
+                                class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-blue-500">
+                            <div>
+                                <h4 class="font-bold">Sophie Martin</h4>
+                                <div class="flex text-yellow-400">
+                                    ★ ★ ★ ★ ★
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"Service rapide et professionnel. Mon véhicule n'a jamais été aussi bien entretenu. Je recommande vivement ce garage pour leur expertise et leur transparence."</p>
+                    </div>
+                    <div class="bg-blue-50 px-6 py-4 flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-sm text-gray-600">12 mai 2025</span>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                alt="Client satisfait" 
+                                class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-blue-500">
+                            <div>
+                                <h4 class="font-bold">Thomas Leroy</h4>
+                                <div class="flex text-yellow-400">
+                                    ★ ★ ★ ★ ★
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"Exceptionnel ! Après une mauvaise expérience ailleurs, ce garage a redonné confiance en ma voiture. Le diagnostic était précis et les prix très corrects."</p>
+                    </div>
+                    <div class="bg-blue-50 px-6 py-4 flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-sm text-gray-600">28 janvier 2025</span>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" 
+                                alt="Client satisfait" 
+                                class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-blue-500">
+                            <div>
+                                <h4 class="font-bold">Émilie Dubois</h4>
+                                <div class="flex text-yellow-400">
+                                    ★ ★ ★ ★ ☆
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"Accueil chaleureux et conseils avisés. Mon SUV a bénéficié d'une révision complète. Seul bémol : un peu d'attente car ils sont très demandés !"</p>
+                    </div>
+                    <div class="bg-blue-50 px-6 py-4 flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-sm text-gray-600">15 mars 2025</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#contact" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full inline-block transition duration-300">Laisser votre avis</a>
+                <p class="mt-4 text-gray-500 text-sm">98% de nos clients nous recommandent</p>
+            </div>
         </div>
-        <div class="service">
-          <h3>Sécurité & Confort</h3>
-          <p>Vérifications essentielles : freinage, éclairage, diagnostic électronique...</p>
+      </section>
+
+      <!-- About Section with image -->
+      <section id="about" class="mb-16">
+          <div class="flex flex-col md:flex-row items-center gap-8">
+              <div class="md:w-1/2">
+                  <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" 
+                       alt="Notre équipe de professionnels" 
+                       class="rounded-lg shadow-lg w-full">
+              </div>
+              <div class="md:w-1/2">
+                  <h2 class="text-3xl font-bold mb-6">À Propos de Nous</h2>
+                  <p class="text-gray-600 mb-4">Fort de plusieurs années d'expérience, notre garage met à votre disposition une équipe de professionnels passionnés par l'automobile et engagés dans la qualité de service.</p>
+                  <p class="text-gray-600">Nous utilisons des équipements de pointe et des pièces de qualité pour garantir des réparations durables et efficaces.</p>
+              </div>
+          </div>
+      </section>
+
+      <section id="contact" class="bg-gray-100 rounded-lg p-10 shadow-lg">
+        <h2 class="text-4xl font-extrabold text-center text-blue-700 mb-10">Nous Contacter</h2>
+        
+        <div class="flex flex-col md:flex-row gap-10 items-center">
+            <div class="md:w-1/2 space-y-6">
+                <p class="text-gray-700 text-lg">Besoin d'un rendez-vous ou d'un devis ? Contactez-nous dès maintenant ! Notre équipe est à votre écoute pour répondre à toutes vos questions.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-bold text-lg">Adresse</h3>
+                            <p class="text-gray-700">3FMF+85P, Antananarivo Tsaramasay</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-bold text-lg">Téléphone</h3>
+                            <p class="text-gray-700">+261 34 12 345 67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-bold text-lg">Email</h3>
+                            <p class="text-gray-700">contact&#64;mongarage-mg.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center md:text-left">
+                    <a href="https://mail.google.com" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full inline-block transition duration-300 shadow-md">Nous contacter</a>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2">
+                <div class="h-full rounded-lg overflow-hidden shadow-lg border border-gray-300">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.071706847875!2d47.51786531546852!3d-18.8927729871844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07e00bfe15a3d%3A0x3e6b5b3b3a1a3b1a!2sGarage%20Automobile%20Tana!5e0!3m2!1sfr!2smg!4v1623251234567!5m2!1sfr!2smg" 
+                            width="100%" 
+                            height="100%" 
+                            style="min-height: 350px; border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
-        <div class="service">
-          <h3>Révision Complète</h3>
-          <p>Un contrôle approfondi pour assurer la longévité et la sécurité de votre véhicule.</p>
-        </div>
-        <a href="services.html" class="btn">Voir tous nos services</a>
-      </section>
-
-      <section id="about">
-        <h2>À Propos de Nous</h2>
-        <p>Fort de plusieurs années d'expérience, notre garage met à votre disposition une équipe de professionnels passionnés.</p>
-      </section>
-
-      <section id="contact">
-        <h2>Nous Contacter</h2>
-        <p>Besoin d'un rendez-vous ou d'un devis ? Contactez-nous dès maintenant !</p>
-        <a href="contact.html" class="btn">Nous contacter</a>
-      </section>
-
-    </div>
+    </section>
+  </div>
 </section>
-<!--        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">-->
-<!--            <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">-->
-<!--                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">-->
-<!--                    <i class="ri-tools-fill text-primary ri-2x"></i>-->
-<!--                </div>-->
-<!--                <h3 class="text-xl font-semibold mb-3">General Maintenance</h3>-->
-<!--                <p class="text-gray-600 mb-4">Regular maintenance to keep your vehicle running smoothly.</p>-->
-<!--                <p class="text-primary font-semibold mb-4">Starting from $49.99</p>-->
-<!--                <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>-->
-<!--            </div>-->
-<!--            <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">-->
-<!--                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">-->
-<!--                    <i class="ri-dashboard-3-fill text-primary ri-2x"></i>-->
-<!--                </div>-->
-<!--                <h3 class="text-xl font-semibold mb-3">Diagnostics</h3>-->
-<!--                <p class="text-gray-600 mb-4">Advanced computer diagnostics for accurate problem detection.</p>-->
-<!--                <p class="text-primary font-semibold mb-4">Starting from $89.99</p>-->
-<!--                <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>-->
-<!--            </div>-->
-<!--            <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">-->
-<!--                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">-->
-<!--                    <i class="ri-car-fill text-primary ri-2x"></i>-->
-<!--                </div>-->
-<!--                <h3 class="text-xl font-semibold mb-3">Major Repairs</h3>-->
-<!--                <p class="text-gray-600 mb-4">Complete repair services for all vehicle makes and models.</p>-->
-<!--                <p class="text-primary font-semibold mb-4">Custom Quote</p>-->
-<!--                <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>-->
-<!--            </div>-->
-<!--            <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">-->
-<!--                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">-->
-<!--                    <i class="ri-dashboard-3-fill text-primary ri-2x"></i>-->
-<!--                </div>-->
-<!--                <h3 class="text-xl font-semibold mb-3">Diagnostics</h3>-->
-<!--                <p class="text-gray-600 mb-4">Advanced computer diagnostics for accurate problem detection.</p>-->
-<!--                <p class="text-primary font-semibold mb-4">Starting from $89.99</p>-->
-<!--                <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>-->
-<!--            </div>-->
-<!--            <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">-->
-<!--                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">-->
-<!--                    <i class="ri-car-fill text-primary ri-2x"></i>-->
-<!--                </div>-->
-<!--                <h3 class="text-xl font-semibold mb-3">Major Repairs</h3>-->
-<!--                <p class="text-gray-600 mb-4">Complete repair services for all vehicle makes and models.</p>-->
-<!--                <p class="text-primary font-semibold mb-4">Custom Quote</p>-->
-<!--                <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Learn More →</button>-->
-<!--            </div>-->
-<!--          @for (i of packs;track $index){-->
-<!--            <div class="service-card bg-white p-6 rounded shadow-lg transition-transform duration-300">-->
-<!--              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">-->
-<!--                <i class="ri-car-fill text-primary ri-2x"></i>-->
-<!--              </div>-->
-<!--              <h3 class="text-xl font-semibold mb-3">{{i.name}}</h3>-->
-<!--              <p class="text-gray-600 mb-4">{{i.description}}</p>-->
-<!--              <p class="text-primary font-semibold mb-4">A partir de $89.99</p>-->
-<!--              <button class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir plus →</button>-->
-<!--            </div>-->
-
-<!--          }-->
-
-
-<!--</div>-->

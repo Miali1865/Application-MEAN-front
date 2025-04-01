@@ -1,70 +1,122 @@
-<div class="main">
-<section class="signup">
-  <div class="container">
-    <div class="signup-content">
-      <div class="signup-form">
-        <h2 class="form-title">Inscription</h2>
-        <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" class="register-form" id="register-form">
-          <div class="form-group">
-            <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-            <input type="text" formControlName="name" id="name" placeholder="Nom Prenomsxxxxx"/>
-            @if (!name?.valid && (name?.dirty || name?.touched)) {
-              @if (name?.errors?.['required']) {
-                <span style="color:red">Veuillez entrez votre nom prenoms 😊</span>
-              }
-              @else if (name?.hasError('minlength')) {
-                <span style="color:red">Veuillez entrez 3 caracteres min😊</span>
-              }
-              @else if (inscriptionForm.get('name')?.hasError('pattern')) {
-                <span style="color:red">Veuillez entrez que des chiffres ou lettres😊</span>
-              }
-              @else if (name?.hasError('whitespace')){
-                  <span style="color:red">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
-              }
+<div class="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl flex flex-wrap">
+    
+    <!-- Section Gauche : Image & Texte -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-8 bg-gray-50">
+      <div class="flex justify-center mb-6">
+        <img src="assets/img/logo2.png" alt="Logo" class="w-48 drop-shadow-lg">
+      </div>
+      
+      <h2 class="text-2xl font-semibold text-gray-800 text-center">Rejoignez notre communauté</h2>
+      <p class="text-gray-600 text-center mt-2 leading-relaxed">
+        Créez un compte pour accéder à toutes les fonctionnalités.
+      </p>
 
-            }
+      <figure class="mt-6">
+        <img src="https://img.freepik.com/photos-premium/mecanicien-masculin-vidange-huile-service-voiture-garage-reparation-vehicules-homme-uniforme-interieur-station-automobile_266732-21249.jpg" 
+             alt="Sign up image" class="rounded-lg w-full shadow-md">
+      </figure>
 
-            </div>
-          <div class="form-group">
-            <label for="email"><i class="zmdi zmdi-email"></i></label>
-            <input type="email" formControlName="email" id="email" placeholder="Email"/>
-            @if (!email?.valid && (email?.dirty || email?.touched)) {
-              @if (email?.errors?.['required']) {
-                <span style="color:red">Veuillez entrez votre email 😊</span>
-              }@else if (email?.errors?.['email']) {
-                <span style="color:red">Veuillez entrez votre email valide😊</span>
-              }@else if (email?.errors?.['minLength']) {
-              <span style="color:red">Veuillez entrez 3 caracteres min😊</span>
-              }
+      <a routerLink="/login" 
+         class="mt-4 text-gray-700 font-semibold transition-all duration-300 hover:text-gray-900 hover:underline">
+         Déjà membre ? Connectez-vous !
+      </a>
+    </div>
 
-            }
+    <!-- Section Droite : Formulaire -->
+    <div class="w-full md:w-1/2 p-10 bg-white">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">S'inscrire</h2>
 
-          </div>
-          <div class="form-group">
-            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-            <input type="password" formControlName="password" id="pass" placeholder="Mot de passe"/>
-          </div>
-          @if (!password?.valid && (password?.dirty || password?.touched)) {
-            @if (password?.errors?.['required']) {
-              <span style="color:red">Veuillez entrez un mot de passe 😊</span>
-            } @else if (password?.hasError('whitespace')){
-              <span style="color:red">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
-            } @else if (password?.hasError('pattern')){
-              <span style="color:red">⚠️ Caractères spéciaux non autorisés (lettres et chiffres uniquement) !</span>
-            }
+      <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        
+        <!-- Nom Input -->
+        <div class="relative">
+          <label for="name" class="absolute left-3 top-3 text-gray-500">
+            <i class="zmdi zmdi-account material-icons-name"></i>
+          </label>
+          <input 
+            type="text" 
+            formControlName="name" 
+            id="name" 
+            placeholder="Nom Prénom" 
+            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
+          >
+        </div>
+        @if (!name?.valid && (name?.dirty || name?.touched)) {
+          @if (name?.errors?.['required']) {
+            <span class="text-red-500 text-sm">Veuillez entrez votre nom prenoms 😊</span>
           }
+          @else if (name?.hasError('minlength')) {
+            <span class="text-red-500 text-sm">Veuillez entrez 3 caracteres min😊</span>
+          }
+          @else if (inscriptionForm.get('name')?.hasError('pattern')) {
+            <span class="text-red-500 text-sm">Veuillez entrez que des chiffres ou lettres😊</span>
+          }
+          @else if (name?.hasError('whitespace')){
+            <span class="text-red-500 text-sm">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
+          }
+        }
 
-          <div class="form-group form-button">
-            <input type="submit" name="signup" id="signup" class="form-submit" value="M'inscrire"/>
-          </div>
-        </form>
-      </div>
-      <div class="signup-image">
-        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
-        <a routerLink="/login" class="signup-image-link">Je suis deja membre</a>
-      </div>
+        <!-- Email Input -->
+        <div class="relative">
+          <label for="email" class="absolute left-3 top-3 text-gray-500">
+            <i class="zmdi zmdi-email"></i>
+          </label>
+          <input 
+            type="email" 
+            formControlName="email" 
+            id="email" 
+            placeholder="Email"
+            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
+          >
+        </div>
+        @if (!email?.valid && (email?.dirty || email?.touched)) {
+          @if (email?.errors?.['required']) {
+            <span class="text-red-500 text-sm">Veuillez entrez votre email 😊</span>
+          }@else if (email?.errors?.['email']) {
+            <span class="text-red-500 text-sm">Veuillez entrez votre email valide😊</span>
+          }@else if (email?.errors?.['minLength']) {
+            <span class="text-red-500 text-sm">Veuillez entrez 3 caracteres min😊</span>
+          }
+        }
+
+        <!-- Password Input -->
+        <div class="relative">
+          <label for="pass" class="absolute left-3 top-3 text-gray-500">
+            <i class="zmdi zmdi-lock"></i>
+          </label>
+          <input 
+            type="password" 
+            formControlName="password" 
+            id="pass" 
+            placeholder="Mot de passe"
+            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
+          >
+        </div>
+        @if (!password?.valid && (password?.dirty || password?.touched)) {
+          @if (password?.errors?.['required']) {
+            <span class="text-red-500 text-sm">Veuillez entrez un mot de passe 😊</span>
+          } @else if (password?.hasError('whitespace')){
+            <span class="text-red-500 text-sm">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
+          } @else if (password?.hasError('pattern')){
+            <span class="text-red-500 text-sm">⚠️ Caractères spéciaux non autorisés (lettres et chiffres uniquement) !</span>
+          }
+        }
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button 
+            type="submit" 
+            name="signup" 
+            id="signup" 
+            class="w-full bg-gray-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-gray-900 transition-all cursor-pointer disabled:bg-gray-400" 
+            [disabled]="inscriptionForm.invalid"
+          >
+            M'inscrire
+          </button>
+        </div>
+
+      </form>
     </div>
   </div>
-</section>
 </div>
-

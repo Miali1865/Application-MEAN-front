@@ -100,7 +100,14 @@ export class MesVoituresService {
     console.log("getAllVoitures$")
     return this.http.get<{ _id: string, client: {
         "_id":string,"name":string,"role":string
-      },brand: string,typeOfCar:string,model:string,year:number, plateNumber: string }[]>
+      },brand: {
+        _id:string,name:string
+      },
+      typeOfCar:
+        {
+      _id:string,name:string
+        },
+      model:string,year:number, plateNumber: string }[]>
     (this.apiUrl+"car/client/")
       .pipe(
         map(data => {
@@ -129,4 +136,20 @@ export class MesVoituresService {
       })
     )
   }
+
+  enregistrer_brand$(p:{name: string}){
+    return this.http.post(this.apiUrl + 'car/brand' , p).pipe(
+      tap(
+        (result:any) => {
+          console.log(result)
+        }
+      ),catchError(error => {
+        console.error("Erreur lors de la enregistrement de marque : ", error);
+        return throwError(() => new Error("Erreur lors de la enregistrement de marque"));
+      })
+    )
+
+  }
+
+
 }

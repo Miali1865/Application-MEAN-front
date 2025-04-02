@@ -11,12 +11,42 @@
           <img class="w-full h-full object-cover rounded-l-lg" src="assets/img/photo3.jpg" alt="..." />
         </div>
         <div class="w-2/3 p-4">
-          <h4 class="text-lg font-semibold">{{i.model}} <span class="text-grey">({{i.typeOfCar}})</span>
+          <h4 class="text-lg font-semibold">
+            {{i.model}}
+            <span class="text-grey">
+              ({{i.typeOfCar}} , {{i.brand}})
+            </span>
           </h4>
-          <p class="text-gray-700 mt-2">
-            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-          </p>
-          <button  class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir plus →</button>
+          <div class="text-gray-700 mt-2">
+              <ul role="list" class="divide-y divide-gray-100">
+                <li class="flex justify-between py-1">
+                  <div class="flex min-w-0 ">
+                    <div class="min-w-0 flex-auto">
+                      <div class="text-sm/6">
+                        <p-avatar >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"/></svg>
+                        </p-avatar>
+                        {{ i.client.name }}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="flex justify-between py-1">
+                  <div class="flex min-w-0 ">
+                    <div class="min-w-0 flex-auto">
+                      <div class="text-sm/6">
+                        <p-avatar >
+                          #
+                        </p-avatar>
+                        {{ i.plateNumber }}
+
+                      </div>
+                    </div>
+                  </div>
+                </li>
+            </ul>
+          </div>
+          <button  class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir en detail →</button>
         </div>
       </div>
     </div>
@@ -24,21 +54,114 @@
 </div>
 
 <!---->
-<p-dialog header="Historique entretient {{voiture_selected?.model}}" [modal]="true" [(visible)]="visible_historique" [style]="{ width: '45rem' }">
+<p-dialog header="Historique entretient {{voiture_selected?.model}}" [modal]="true" [(visible)]="visible_historique" [maximizable]="true" [style]="{ width: '45rem' }">
 
-  <ul class="list-group">
-    <!--    @for (i of pack_selected.services;track $index){-->
-    <li class="list-group-item d-flex justify-content-between border-b">Entretient
-      <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">
-              Duree
-        </span>
-    </li>
-    <!--    }-->
-  </ul>
+  @if(voiture_selected){
+
+  <div class="w-full ">
+    <h3 class="text-lg font-semibold">Details :</h3>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-0  border-gray-200 overflow-hidden">
+      <!-- Item 1 -->
+      <div class="flex flex-col items-center sm:items-start md:flex-row xl:flex-col p-4 border-b border-r border-gray-200">
+        <div class="flex items-center mb-2">
+          <span class="text-sm text-gray-600">Proprietaire</span>
+        </div>
+        <h3 class="font-semibold text-xl md:text-lg md:ml-3 xl:ml-0">
+          {{voiture_selected.client.name}}
+        </h3>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="flex flex-col items-center sm:items-start md:flex-row xl:flex-col p-4 border-b border-r border-gray-200">
+        <div class="flex items-center mb-2">
+          <span class="text-sm text-gray-600">Marque</span>
+        </div>
+        <h3 class="font-semibold text-xl md:text-lg md:ml-3 xl:ml-0">
+          {{voiture_selected.brand}}
+        </h3>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="flex flex-col items-center sm:items-start md:flex-row xl:flex-col p-4 border-b border-gray-200 lg:border-r xl:border-r-0">
+        <div class="flex items-center mb-2">
+          <span class="text-sm text-gray-600">Modele</span>
+        </div>
+        <h3 class="font-semibold text-xl md:text-lg md:ml-3 xl:ml-0">
+          {{voiture_selected.model}}
+        </h3>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="flex flex-col items-center sm:items-start md:flex-row xl:flex-col p-4 border-b border-r border-gray-200 lg:border-b-0">
+        <div class="flex items-center mb-2">
+          <span class="text-sm text-gray-600">Annee</span>
+        </div>
+        <h3 class="font-semibold text-xl md:text-lg md:ml-3 xl:ml-0">
+          {{voiture_selected.year}}
+        </h3>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="flex flex-col items-center sm:items-start md:flex-row xl:flex-col p-4 border-b border-r border-gray-200 lg:border-b-0">
+        <div class="flex items-center mb-2">
+          <span class="text-sm text-gray-600">Type</span>
+        </div>
+        <h3 class="font-semibold text-xl md:text-lg md:ml-3 xl:ml-0">
+          {{voiture_selected.typeOfCar}}
+        </h3>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="flex flex-col items-center sm:items-start md:flex-row xl:flex-col p-4">
+        <div class="flex items-center mb-2">
+          <span class="text-sm text-gray-600">Immatriculation</span>
+        </div>
+        <h3 class="font-semibold text-xl md:text-lg md:ml-3 xl:ml-0">
+          {{voiture_selected.plateNumber}}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-lg font-semibold mb-5">Historique reparations : </h3>
+
+
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Debut</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fin</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mécanicien</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+    </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+<!--    <tr *ngFor="let item of filteredData">-->
+<!--      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.id}}</td>-->
+<!--      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{item.dateHeure | date:'dd/MM/yyyy HH:mm'}}</td>-->
+<!--      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.nomService}}</td>-->
+<!--      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.mecanicien}}</td>-->
+<!--      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.voiture}}</td>-->
+<!--      <td class="px-6 py-4 whitespace-nowrap">-->
+<!--            <span [ngClass]="{-->
+<!--              'bg-green-100 text-green-800': item.statut === 'Terminé',-->
+<!--              'bg-blue-100 text-blue-800': item.statut === 'En cours',-->
+<!--              'bg-yellow-100 text-yellow-800': item.statut === 'A venir'-->
+<!--            }" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">-->
+<!--              {{item.statut}}-->
+<!--            </span>-->
+<!--      </td>-->
+<!--    </tr>-->
+
+    </tbody>
+  </table>
 
 
   <div class="flex justify-end gap-2">
     <p-button label="Fermer" severity="secondary" (click)="visible_historique = false ; voiture_selected = null" />
   </div>
-
+  }
 </p-dialog>

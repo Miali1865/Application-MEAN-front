@@ -5,13 +5,15 @@ import {Voiture} from '../../../models/voiture/voiture';
 import {MesVoituresService} from '../../../services/voiture/mes-voitures.service';
 import {User} from '../../../models/user/user';
 import {TitleDescriptionComponent} from '../../../components/title-description/title-description.component';
+import {Avatar} from 'primeng/avatar';
 
 @Component({
   selector: 'app-all-voitures',
   imports: [
     Button,
     Dialog,
-    TitleDescriptionComponent
+    TitleDescriptionComponent,
+    Avatar
   ],
   templateUrl: './all-voitures.component.html',
   standalone: true,
@@ -36,7 +38,7 @@ export class AllVoituresComponent implements OnInit {
             this.all_voitures.push(
               new Voiture(data[i]._id,
                 new User(data[i].client._id,data[i].client.name,null,data[i].client.role),
-                data[i].brand,data[i].typeOfCar,data[i].model,data[i].year,data[i].plateNumber)
+                data[i].brand.name,data[i].typeOfCar.name,data[i].model,data[i].year,data[i].plateNumber)
             )
           }
         },

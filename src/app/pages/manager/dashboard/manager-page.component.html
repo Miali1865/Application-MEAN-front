@@ -1,7 +1,43 @@
-<div class="manager-dashboard p-8 bg-gray-100 min-h-screen">
-  <h1 class="text-3xl font-semibold text-center text-gray-800 mb-8">Bienvenue, Manager!</h1>
+<app-title-description
+  [titre]="'Tableau de bord'"
+  [description]="'Détails complets en un clic'"/>
 
-  <!-- Statistiques principales -->
+
+<div class="manager-dashboard p-8 bg-gray-100 min-h-screen">
+  <h2 class="text-3xl mb-3">Statistiques voitures : </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div style="width: 100%">
+        <h2 class="text-lg font-medium text-gray-700">Véhicules enregsitrer</h2>
+<!--        <p class="text-3xl font-bold text-gray-900">{{ count_voitures }}</p>-->
+        <p class="text-3xl font-bold text-gray-900">miandry mialy</p>
+        <div style="text-align: end">
+          <a [routerLink]="'/manager/all_voitures'" class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir →</a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div style="width: 100%">
+        <h2 class="text-lg font-medium text-gray-700">Marques enregsitrer</h2>
+        <p class="text-3xl font-bold text-gray-900">{{ brands.length }}</p>
+        <div style="text-align: end">
+          <button (click)="showDialog_brands()" class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir →</button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div style="width: 100%">
+        <h2 class="text-lg font-medium text-gray-700">Type de vehicules enregsitrer</h2>
+        <p class="text-3xl font-bold text-gray-900">{{ typeofcars.length }}</p>
+        <div style="text-align: end">
+          <button (click)="showDialog_typeofcars()" class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <h2 class="text-3xl mb-3">Chiffres d'affaires :</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
       <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
           <div>
@@ -33,6 +69,31 @@
           </div>
       </div>
     </div>
+
+  <h2 class="text-3xl mb-3">Statistiques de vente :</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div style="width: 100%">
+        <h2 class="text-lg font-medium text-gray-700">Meilleur pack vendue</h2>
+        <p class="text-3xl font-bold text-gray-900">miandry mialy</p>
+        <div style="text-align: end">
+          <button (click)="showDialog_packs()"  class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir classement→</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div style="width: 100%">
+        <h2 class="text-lg font-medium text-gray-700">Meilleur service vendue</h2>
+        <p class="text-3xl font-bold text-gray-900">miandry mialy</p>
+        <div style="text-align: end">
+          <button (click)="showDialog_services()" class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir classement→</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 
   <!-- Graphiques et tableaux -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -112,3 +173,119 @@
   </div>
 
 </div>
+
+<!--Marques-->
+<p-dialog
+  header="Marques"
+  [modal]="true"
+  [(visible)]="visible_brands"
+  [style]="{ width: '50rem', borderRadius: '0.75rem' }"
+  [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+  class="rounded-lg">
+
+  <div class="space-y-6">
+
+      <div class=" px-6 py-4 gap-4 mb-4">
+        <form [formGroup]="form_new_brand" (ngSubmit)="onSubmit_new_brand()">
+           <label for="filter-service" class="block text-gray-700 font-semibold mb-2">Nom marque :</label>
+            <input type="text" id="filter-service" formControlName="name" class="w-full p-2 border rounded-md" placeholder="Mercedes , Jeep ... "/>
+          <p-button label="Enregistrer" type="submit" />
+        </form>
+      </div>
+
+
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+      </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let item of brands">
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.name}}</td>
+          </tr>
+      </tbody>
+    </table>
+
+        <div class="flex justify-end gap-2">
+      <p-button label="Fermer" severity="secondary" (click)="visible_brands = false " />
+    </div>
+  </div>
+</p-dialog>
+
+<!--Types de vehicules-->
+<p-dialog
+  header="Types de vehicules"
+  [modal]="true"
+  [(visible)]="visible_typeofcars"
+  [style]="{ width: '50rem', borderRadius: '0.75rem' }"
+  [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+  class="rounded-lg">
+
+  <div class="space-y-6">
+
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+      </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let item of typeofcars">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.name}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="flex justify-end gap-2">
+      <p-button label="Fermer" severity="secondary" (click)="visible_typeofcars = false " />
+    </div>
+  </div>
+</p-dialog>
+
+<!--Services-->
+<p-dialog
+  header="Services"
+  [modal]="true"
+  [(visible)]="visible_services"
+  [maximizable]="true"
+  [style]="{ width: '60rem', borderRadius: '0.75rem' }"
+  [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+  class="rounded-lg">
+
+  <div class="space-y-6">
+
+    <div class=" px-6 py-4 gap-4 mb-4">
+<!--      todo insert -->
+      <form [formGroup]="form_new_service" (ngSubmit)="onSubmit_new_service()">
+        <label for="name_service" class="block text-gray-700 font-semibold mb-2">Nom marque :</label>
+        <input type="text" id="name_service" formControlName="name" class="w-full p-2 border rounded-md" placeholder="Mercedes , Jeep ... "/>
+        <p-button label="Enregistrer" type="submit" />
+      </form>
+    </div>
+
+
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prix depart</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Temps estimee</th>
+      </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let item of services">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.name}}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.description}}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.basePrice | thousand}} Ar</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{item.estimatedTime}} min</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="flex justify-end gap-2">
+      <p-button label="Fermer" severity="secondary" (click)="visible_services = false " />
+    </div>
+  </div>
+</p-dialog>

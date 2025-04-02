@@ -57,6 +57,14 @@ export class ManagerPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.voitureService.getNbvoituresEnregistrer$().subscribe({
+      // next: data => console.log('Brands récupérés :', data),
+      next: data => this.count_voitures= data.totalCars,
+      error: err => console.error('Erreur :', err)
+    });
+
+
+
     this.voitureService.getBrand$().subscribe({
       // next: data => console.log('Brands récupérés :', data),
       next: data => this.brands= data,

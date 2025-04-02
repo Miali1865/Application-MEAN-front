@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import { User } from '../../models/user/user';
-import { tap } from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SigninupService {
   private apiUrl = `${environment.apiUrl}/api/auth/`;
+  private apiUrl_users = `${environment.apiUrl}/api/users/`;
 
   constructor(private http: HttpClient) { }
 
@@ -39,6 +40,48 @@ export class SigninupService {
       }
       ))
   }
+
+  add_mecanicien(name: string, password: string, email: string): Observable<User | undefined> {
+    const register_params = {
+      name: name,
+      email: email,
+      password: password,
+      role: 'mecanicien'
+    }
+    return this.http.post(this.apiUrl + 'register/', register_params).pipe(
+      tap((result: any) => {
+          console.warn("reussi : " + result);
+        }
+      ))
+  }
+
+
+  getMecanicien$(){
+    console.log("getMecanicien$")
+    const storedData = localStorage.getItem('mecaniciens');
+    if (storedData) {
+      console.log("getMecanicien$ deja existant : localStorage")
+      return of(JSON.parse(storedData)); // Convertir en JSON et renvoyer un Observable
+    }
+
+    return this.http.get<{message: string, mechanics: any[]}>
+    (this.apiUrl_users + "mechanics").pipe
+    (
+      map(
+        data => {
+          console.log(data)
+          localStorage.setItem('mecaniciens', JSON.stringify(data));
+          return data;
+        }
+      ),
+      catchError(error => {
+        console.error("Erreur lors de getMecanicien$", error);
+        return throwError(() => new Error("Échec getMecanicien$"));
+      })
+    )
+  }
+
+
 
   getuserconnected(): null | User {
     const userlocalStorage = localStorage.getItem('user');

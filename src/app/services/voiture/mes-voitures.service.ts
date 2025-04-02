@@ -20,13 +20,25 @@ export class MesVoituresService {
   //   }
   //   return localStorage.getItem('typeofcars');
   // }
-  getBrands() {
-    if (localStorage.getItem('brands')==null){
-      this.getBrand$()
-    }
-    return localStorage.getItem('brands');
+  getNbvoituresEnregistrer$(){
+    console.log("getNbvoituresEnregistrer$")
 
+    return this.http.get<{message: string, totalCars: number}>
+    (this.apiUrl + "car/total-cars").pipe
+    (
+      map(
+        data => {
+          console.log(data)
+          return data;
+        }
+      ),
+      catchError(error => {
+        console.error("Erreur lors de lgetNbvoituresEnregistrer$", error);
+        return throwError(() => new Error("Échec getNbvoituresEnregistrer$"));
+      })
+    )
   }
+
 
   getBrand$(){
     console.log("getBrand$")

@@ -20,6 +20,7 @@ import {NgIf} from '@angular/common';
 export class HeaderComponent implements OnInit{
   useconnected!:User|null;
   isOpen = false;
+  isOpenService = false
 
   constructor(
     public signinupService: SigninupService,

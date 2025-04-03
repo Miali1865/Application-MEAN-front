@@ -77,7 +77,6 @@ export class MesVoituresComponent implements OnInit {
 
     }
     )
-
   }
 
 
@@ -112,6 +111,7 @@ export class MesVoituresComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.messageService.showSuccess("voiture enregistrer");
+        this.fetch_mes_voiture(this.id);
         this.visible = false
       },
       error: err => console.error('Erreur :', err)

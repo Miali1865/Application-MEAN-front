@@ -17,27 +17,44 @@
         <!--                <a routerLink="contact" class="text-gray-700 hover:text-primary">Contact</a>-->
         }
         @else if (useconnected?.role === "manager"){
-        <a routerLink="/manager/tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>
-        <a routerLink="/manager/facturations" class="text-gray-700 hover:text-primary">Facturations</a>
-        <a routerLink="/manager/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
-        <a routerLink="/manager/utilisateurs" class="text-gray-700 hover:text-primary">Utilisateurs</a>
-        <a routerLink="/manager/all_voitures" class="text-gray-700 hover:text-primary">Voitures</a>
-        <a routerLink="/manager/all_mecaniciens" class="text-gray-700 hover:text-primary">Mécaniciens</a>
+          <a routerLink="/manager/tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>
+          <a routerLink="/manager/facturations" class="text-gray-700 hover:text-primary">Facturations</a>
+          <a routerLink="/manager/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
+          <a routerLink="/manager/utilisateurs" class="text-gray-700 hover:text-primary">Utilisateurs</a>
+          <a routerLink="/manager/all_voitures" class="text-gray-700 hover:text-primary">Voitures</a>
+          <a routerLink="/manager/all_mecaniciens" class="text-gray-700 hover:text-primary">Mécaniciens</a>
         }
         @else if (useconnected?.role === "mecanicien"){
-        <a routerLink="/mecanicien/tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>
-        <a routerLink="/mecanicien/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
-        <a routerLink="/mecanicien/liste-taches" class="text-gray-700 hover:text-primary">Liste taches</a>
-
+          <a routerLink="/mecanicien/tableau_bord" class="text-gray-700 hover:text-primary">Tableau de bord</a>
+          <a routerLink="/mecanicien/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
+          <a routerLink="/mecanicien/liste-taches" class="text-gray-700 hover:text-primary">Liste taches</a>
         }
         @else if (useconnected?.role === "client"){
-        <a routerLink="" class="text-gray-700 hover:text-primary">Accueil</a>
-        <a routerLink="/client/voiture" class="text-gray-700 hover:text-primary">Mes_voitures</a>
-        <a routerLink="/client/service" class="text-gray-700 hover:text-primary">Services</a>
-        <a routerLink="/client/carnet" class="text-gray-700 hover:text-primary">Carnets d'entretien</a>
-        <a routerLink="/client/facturations" class="text-gray-700 hover:text-primary">Factures</a>
-        <a routerLink="/client/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
-        <a routerLink="/client/profil" class="text-gray-700 hover:text-primary">Mon Profil</a>
+          <a routerLink="" class="text-gray-700 hover:text-primary">Accueil</a>
+          <a routerLink="/client/service" class="text-gray-700 hover:text-primary">Pack</a>
+          <div class="relative">
+            <button (click)="isOpenService = !isOpenService" class="text-gray-700 hover:text-primary focus:outline-none">
+              Services
+            </button>
+          
+            <div *ngIf="isOpenService" (clickOutside)="closeDropdown()" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-xl transition-opacity duration-300 ease-out transform scale-95 origin-top-right">
+              <div class="border-t border-gray-200"></div>
+          
+              <a routerLink="/accueil/list_services" 
+                 class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition duration-200 ease-in-out">
+                Nos services
+              </a>
+          
+              <a routerLink="/client/service" 
+                 class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition duration-200 ease-in-out">
+                Vos carnets d'entretien
+              </a>
+          
+              <div class="border-t border-gray-200"></div>
+            </div>
+          </div>   
+          <a routerLink="/client/facturations" class="text-gray-700 hover:text-primary">Factures</a>
+          <a routerLink="/client/calendrier" class="text-gray-700 hover:text-primary">Calendrier</a>
         }
       </nav>
 
@@ -82,10 +99,10 @@
             class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
             <span class="block px-4 py-2 text-blue-800 ">{{useconnected.name}}</span>
             <div class="border-t border-gray-200"></div>
-
-            <!-- <a  class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Action</a>
-            <a  class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Une autre action</a>
-            <a  class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Autre chose ici</a> -->
+            @if (useconnected.role === "client"){
+              <a routerLink="/client/profil" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Mon Profil</a>
+              <a routerLink="/client/voiture" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Mes voitures</a>
+            }
             <div class="border-t border-gray-200"></div>
             <a routerLink="/login" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Se deconnecter</a>
           </div>

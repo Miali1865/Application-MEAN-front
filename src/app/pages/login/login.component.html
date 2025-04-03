@@ -11,8 +11,6 @@ cleint : client1&#64;garage.com ; 123456
     <!-- Section Gauche : Image & Texte -->
     <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-8 relative bg-gray-200">
 
-      <a routerLink="/accueil" class="text-left self-start underline decoration-2 hover:decoration-gray-900 decoration-gray-700 text-gray-700 font-medium hover:text-gray-900 transition-colors duration-200 mb-5">Explorez notre site</a>
-
       <h2 class="text-2xl font-semibold text-gray-800 text-center">Bienvenue sur notre site</h2>
       <p class="text-gray-600 text-center mt-2 leading-relaxed">
         Connectez-vous pour gérer vos opérations en toute simplicité.
@@ -75,6 +73,9 @@ cleint : client1&#64;garage.com ; 123456
             [disabled]="loginForm.invalid" value="Se connecter">
         </div>
 
+        <div class="w-full flex flex-col justify-center items-center p-8 relative">
+          <a routerLink="/accueil" class="underline decoration-2 hover:decoration-gray-900 decoration-gray-700 text-gray-700 font-medium hover:text-gray-900 transition-colors duration-200">Explorez notre site</a>
+        </div>
       </form>
     </div>
   </div>

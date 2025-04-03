@@ -1,6 +1,6 @@
 <app-title-description
   [titre]="'Gestion des Mécaniciens'"
-  [description]="'Ajoutez, modifiez ou supprimez des mécaniciens pour gérer vos ateliers.'"/>
+  [description]="'Ajoutez et attribuer des tâches à vos mécaniciens pour gérer vos ateliers.'"/>
 
 
 <div class="bg-gray-50 p-4"> <!-- Retirer min-h-screen pour éviter d'avoir trop d'espace -->
@@ -26,10 +26,6 @@
                         <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-100">
                           <div class="col-span-6 font-medium">{{ i.name }}</div>
                           <div class="col-span-4 text-gray-600 truncate">{{ i.email }}</div>
-                          <div class="col-span-2 flex justify-end space-x-2">
-                            <button onclick="openModal('editModal')" class="text-blue-500 hover:text-blue-700">✏️</button>
-                            <button onclick="openModal('deleteModal')" class="text-red-500 hover:text-red-700">🗑️</button>
-                          </div>
                         </div>
                       }
                     </div>
@@ -97,47 +93,91 @@
         </div>
     </div>
 
-    <!-- Modals -->
-    <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg p-5 w-96">
-            <h3 class="font-semibold mb-3">Modifier mécanicien</h3>
-            <form class="space-y-3">
-                <input type="text" class="w-full p-2 border rounded-md mb-2" value="Jean Dupont">
-                <input type="email" class="w-full p-2 border rounded-md" value="jean&#64;garage.com">
-                <div class="flex justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeModal('editModal')" class="px-3 py-1 border rounded-md">
-                        Annuler
-                    </button>
-                    <button type="submit" class="px-3 py-1 bg-blue-600 text-white rounded-md">
-                        Enregistrer
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <div class="mx-auto bg-white rounded-lg shadow-md p-5 max-w-7xl mt-10">
+      <div class="flex space-x-5">
+          <!-- Colonne de gauche - Liste (50% de largeur) -->
+          <div class="w-1/2">
+              <h2 class="text-xl font-semibold mb-3 text-gray-700">Liste des mécaniciens</h2>
+              <div class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">
+                  <!-- En-tête tableau -->
+                  <div class="grid grid-cols-12 bg-gray-100 p-3 text-sm">
+                      <div class="col-span-6 font-medium">Nom</div>
+                      <div class="col-span-4 font-medium">Email</div>
+                      <div class="col-span-2"></div>
+                  </div>
 
-    <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg p-5 w-96">
-            <h3 class="font-semibold mb-3">Supprimer mécanicien</h3>
-            <p class="mb-4">Confirmez-vous la suppression de ce mécanicien ?</p>
-            <div class="flex justify-end space-x-2">
-                <button onclick="closeModal('deleteModal')" class="px-3 py-1 border rounded-md">
-                    Annuler
-                </button>
-                <button class="px-3 py-1 bg-red-600 text-white rounded-md">
-                    Supprimer
-                </button>
-            </div>
-        </div>
+                  <!-- Liste mécaniciens -->
+                  <div class="divide-y divide-gray-200">
+                      <!-- Item 1 -->
+                    @for(i of mecaniciens;track $index){
+                      <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-100">
+                        <div class="col-span-6 font-medium">{{ i.name }}</div>
+                        <div class="col-span-4 text-gray-600 truncate">{{ i.email }}</div>
+                      </div>
+                    }
+                  </div>
+              </div>
+          </div>
+
+          <!-- Colonne de droite - Formulaire (50% de largeur) -->
+          <div class="w-1/2">
+
+              <h2 class="text-xl font-semibold mb-3 text-gray-700">Ajouter un mécanicien</h2>
+              <div class="bg-gray-50 rounded-lg border border-gray-200 p-4">
+                  <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" class="space-y-6">
+                      <div>
+                          <label class="block text-sm font-medium mb-1">Nom complet</label>
+                          <input type="text" formControlName="name"  class="w-full p-2 border rounded-md">
+                      </div>
+                    @if (!name?.valid && (name?.dirty || name?.touched)) {
+                      @if (name?.errors?.['required']) {
+                        <span class="text-red-500 text-sm">Veuillez entrez votre nom prenoms 😊</span>
+                      }
+                      @else if (name?.hasError('minlength')) {
+                        <span class="text-red-500 text-sm">Veuillez entrez 3 caracteres min😊</span>
+                      }
+                      @else if (inscriptionForm.get('name')?.hasError('pattern')) {
+                        <span class="text-red-500 text-sm">Veuillez entrez que des chiffres ou lettres😊</span>
+                      }
+                      @else if (name?.hasError('whitespace')){
+                        <span class="text-red-500 text-sm">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
+                      }
+                    }
+
+                      <div>
+                          <label class="block text-sm font-medium mb-1">Email</label>
+                          <input type="email" formControlName="email" class="w-full p-2 border rounded-md">
+                      </div>
+                    @if (!email?.valid && (email?.dirty || email?.touched)) {
+                      @if (email?.errors?.['required']) {
+                        <span class="text-red-500 text-sm">Veuillez entrez votre email 😊</span>
+                      }@else if (email?.errors?.['email']) {
+                        <span class="text-red-500 text-sm">Veuillez entrez votre email valide😊</span>
+                      }@else if (email?.errors?.['minLength']) {
+                        <span class="text-red-500 text-sm">Veuillez entrez 3 caracteres min😊</span>
+                      }
+                    }
+
+                    <div>
+                      <label class="block text-sm font-medium mb-1">Mot de passe de connexion</label>
+                      <input type="password" formControlName="password"  class="w-full p-2 border rounded-md">
+                    </div>
+                    @if (!password?.valid && (password?.dirty || password?.touched)) {
+                      @if (password?.errors?.['required']) {
+                        <span class="text-red-500 text-sm">Veuillez entrez un mot de passe 😊</span>
+                      } @else if (password?.hasError('whitespace')){
+                        <span class="text-red-500 text-sm">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
+                      } @else if (password?.hasError('pattern')){
+                        <span class="text-red-500 text-sm">⚠️ Caractères spéciaux non autorisés (lettres et chiffres uniquement) !</span>
+                      }
+                    }
+
+
+                    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700" [disabled]="inscriptionForm.invalid"> Ajouter</button>
+                  </form>
+              </div>
+          </div>
+      </div>
     </div>
 </div>
 
-<script>
-    function openModal(modalId) {
-        document.getElementById(modalId).classList.remove('hidden');
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).classList.add('hidden');
-    }
-</script>

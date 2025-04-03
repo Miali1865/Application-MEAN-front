@@ -158,7 +158,8 @@
 
     <!-- Étape 3: Calendrier -->
     <div *ngIf="currentStep === 3" class="space-y-4">
-      <h2 class="text-xl font-semibold">Selectionnez une date : </h2>
+      <h2 class="text-xl font-semibold">Selectionnez une heure : {{date_selected}}</h2>
+      <h2 class="text-xl font-semibold">Selectionnez une date : {{date_selected}}</h2>
       <div class="px-10 py-4" style="width: 85%; margin: auto">
         <full-calendar [options]="calendarOptions">
           <!--                   (eventRender)="renderCustomIcon($event)"-->

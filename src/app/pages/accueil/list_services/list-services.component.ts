@@ -31,6 +31,8 @@ export class ListServicesComponent implements OnInit {
   services: ServicesReparation[] = [];
   voitureService = inject(MesVoituresService);
   service = inject(ServiceService);
+  date_selected: string | null = '';
+
 
   service_selected!:ServicesReparation | null;
   voiture_selected!:Voiture | null;
@@ -42,6 +44,9 @@ export class ListServicesComponent implements OnInit {
   signinupService = inject(SigninupService)
   user_connected = this.signinupService.getuserconnected()
   id: string | undefined = this.user_connected?.id;
+
+  availableTimes: string[] = ['8:00', '10:00', '14:00', '16:00'];
+  selectedTime: string = this.availableTimes[0];
 
   protected readonly Number = Number;
 
@@ -119,30 +124,9 @@ export class ListServicesComponent implements OnInit {
   }
 
   calendarOptions: any = {
-    // contentHeight: 100,
-    height: 450,
-    // firstDay: 1,
+    height: 490,
     locale: 'fr',
-    // multiMonthMaxColumns: 1,
-    // initialView: 'multiMonthYear', // Vue initiale
-    // plugins: [interactionPlugin, multiMonthPlugin,bootstrap5Plugin ],
-    // themeSystem: 'bootstrap5',
-
-    // // ny event
     dateClick: this.handleDateClick.bind(this), // Fonction de gestion du clic sur une date
-    // eventClick: this.handleEventClick.bind(this),
-    // // prevYear: this.handelPrevYearClick.bind(this),
-
-    // headerToolbar: {
-    //   left: '',
-    //   center: 'title',
-    //   //   right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    // },
-    //
-    // eventDidMount: function (info: any) {
-    //   // Ajouter un tooltip à l'événement
-    //   info.el.setAttribute('title', info.event.extendedProps.description);
-    // },
     aspectRatio: 1,
     plugins: [
       interactionPlugin,
@@ -154,15 +138,20 @@ export class ListServicesComponent implements OnInit {
       right: 'dayGridMonth'
     },
     initialView: 'dayGridMonth',
-    // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
-    editable: true,
-    selectable: true,
+    editable: false,
+    selectable: false,
     selectMirror: true,
-    dayMaxEvents: true,
-
+    dayMaxEvents: false,
+// Définir la plage de dates navigables
+    validRange: {
+      start: new Date(), // Empêche de voir les mois précédents
+      end: new Date(new Date().setMonth(new Date().getMonth() + 6)) // Limite à 6 mois dans le futur
+    }
   };
 
   handleDateClick(arg: any) {
+    this.date_selected = arg.dateStr;
+
   }
 }

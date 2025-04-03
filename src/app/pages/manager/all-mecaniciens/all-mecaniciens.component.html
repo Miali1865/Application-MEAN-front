@@ -95,88 +95,122 @@
 
     <div class="mx-auto bg-white rounded-lg shadow-md p-5 max-w-7xl mt-10">
       <div class="flex space-x-5">
-          <!-- Colonne de gauche - Liste (50% de largeur) -->
-          <div class="w-1/2">
-              <h2 class="text-xl font-semibold mb-3 text-gray-700">Liste des mécaniciens</h2>
-              <div class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">
-                  <!-- En-tête tableau -->
-                  <div class="grid grid-cols-12 bg-gray-100 p-3 text-sm">
-                      <div class="col-span-6 font-medium">Nom</div>
-                      <div class="col-span-4 font-medium">Email</div>
-                      <div class="col-span-2"></div>
-                  </div>
-
-                  <!-- Liste mécaniciens -->
-                  <div class="divide-y divide-gray-200">
-                      <!-- Item 1 -->
-                    @for(i of mecaniciens;track $index){
-                      <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-100">
-                        <div class="col-span-6 font-medium">{{ i.name }}</div>
-                        <div class="col-span-4 text-gray-600 truncate">{{ i.email }}</div>
-                      </div>
-                    }
-                  </div>
+        <!-- Colonne de gauche - Liste des tâches existantes -->
+        <div class="w-1/2">
+          <h2 class="text-xl font-semibold mb-3 text-gray-700">Tâches attribuées</h2>
+          <div class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">
+            <!-- En-tête tableau -->
+            <div class="grid grid-cols-12 bg-gray-100 p-3 text-sm">
+              <div class="col-span-3 font-medium">Mécanicien</div>
+              <div class="col-span-3 font-medium">Voiture</div>
+              <div class="col-span-4 font-medium">Service</div>
+              <div class="col-span-2 font-medium">Statut</div>
+            </div>
+    
+            <!-- Liste des tâches (exemples statiques) -->
+            <div class="divide-y divide-gray-200">
+              <!-- Tâche 1 -->
+              <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-50">
+                <div class="col-span-3">Jean Dupont</div>
+                <div class="col-span-3">Peugeot 308 - AB-123-CD</div>
+                <div class="col-span-4 text-gray-600">Vidange complète</div>
+                <div class="col-span-2">
+                  <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">In progress</span>
+                </div>
               </div>
-          </div>
-
-          <!-- Colonne de droite - Formulaire (50% de largeur) -->
-          <div class="w-1/2">
-
-              <h2 class="text-xl font-semibold mb-3 text-gray-700">Ajouter un mécanicien</h2>
-              <div class="bg-gray-50 rounded-lg border border-gray-200 p-4">
-                  <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" class="space-y-6">
-                      <div>
-                          <label class="block text-sm font-medium mb-1">Nom complet</label>
-                          <input type="text" formControlName="name"  class="w-full p-2 border rounded-md">
-                      </div>
-                    @if (!name?.valid && (name?.dirty || name?.touched)) {
-                      @if (name?.errors?.['required']) {
-                        <span class="text-red-500 text-sm">Veuillez entrez votre nom prenoms 😊</span>
-                      }
-                      @else if (name?.hasError('minlength')) {
-                        <span class="text-red-500 text-sm">Veuillez entrez 3 caracteres min😊</span>
-                      }
-                      @else if (inscriptionForm.get('name')?.hasError('pattern')) {
-                        <span class="text-red-500 text-sm">Veuillez entrez que des chiffres ou lettres😊</span>
-                      }
-                      @else if (name?.hasError('whitespace')){
-                        <span class="text-red-500 text-sm">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
-                      }
-                    }
-
-                      <div>
-                          <label class="block text-sm font-medium mb-1">Email</label>
-                          <input type="email" formControlName="email" class="w-full p-2 border rounded-md">
-                      </div>
-                    @if (!email?.valid && (email?.dirty || email?.touched)) {
-                      @if (email?.errors?.['required']) {
-                        <span class="text-red-500 text-sm">Veuillez entrez votre email 😊</span>
-                      }@else if (email?.errors?.['email']) {
-                        <span class="text-red-500 text-sm">Veuillez entrez votre email valide😊</span>
-                      }@else if (email?.errors?.['minLength']) {
-                        <span class="text-red-500 text-sm">Veuillez entrez 3 caracteres min😊</span>
-                      }
-                    }
-
-                    <div>
-                      <label class="block text-sm font-medium mb-1">Mot de passe de connexion</label>
-                      <input type="password" formControlName="password"  class="w-full p-2 border rounded-md">
-                    </div>
-                    @if (!password?.valid && (password?.dirty || password?.touched)) {
-                      @if (password?.errors?.['required']) {
-                        <span class="text-red-500 text-sm">Veuillez entrez un mot de passe 😊</span>
-                      } @else if (password?.hasError('whitespace')){
-                        <span class="text-red-500 text-sm">⚠️ Ce champ ne peut pas être uniquement des espaces !</span>
-                      } @else if (password?.hasError('pattern')){
-                        <span class="text-red-500 text-sm">⚠️ Caractères spéciaux non autorisés (lettres et chiffres uniquement) !</span>
-                      }
-                    }
-
-
-                    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700" [disabled]="inscriptionForm.invalid"> Ajouter</button>
-                  </form>
+              
+              <!-- Tâche 2 -->
+              <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-50">
+                <div class="col-span-3">Marie Martin</div>
+                <div class="col-span-3">Renault Clio - EF-456-GH</div>
+                <div class="col-span-4 text-gray-600">Changement plaquettes</div>
+                <div class="col-span-2">
+                  <span class="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-800">Pending</span>
+                </div>
               </div>
+              
+              <!-- Tâche 3 -->
+              <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-50">
+                <div class="col-span-3">Pierre Lambert</div>
+                <div class="col-span-3">Toyota Yaris - IJ-789-KL</div>
+                <div class="col-span-4 text-gray-600">Contrôle technique</div>
+                <div class="col-span-2">
+                  <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-800">Not started</span>
+                </div>
+              </div>
+              
+              <!-- Tâche 4 -->
+              <div class="grid grid-cols-12 p-3 items-center hover:bg-gray-50">
+                <div class="col-span-3">Sophie Bernard</div>
+                <div class="col-span-3">Volkswagen Golf - MN-012-OP</div>
+                <div class="col-span-4 text-gray-600">Révision complète</div>
+                <div class="col-span-2">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Completed</span>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+    
+        <!-- Colonne de droite - Formulaire d'attribution -->
+        <div class="w-1/2">
+          <h2 class="text-xl font-semibold mb-3 text-gray-700">Attribuer une tâche</h2>
+          <div class="bg-gray-50 rounded-lg border border-gray-200 p-4">
+            <form class="space-y-4">
+              <!-- Sélection de la voiture -->
+              <div>
+                <label class="block text-sm font-medium mb-1">Voiture</label>
+                <select class="w-full p-2 border rounded-md bg-white">
+                  <option value="">Sélectionnez une voiture</option>
+                  <option value="1">Peugeot 308 - AB-123-CD</option>
+                  <option value="2">Renault Clio - EF-456-GH</option>
+                  <option value="3">Toyota Yaris - IJ-789-KL</option>
+                  <option value="4">Volkswagen Golf - MN-012-OP</option>
+                </select>
+              </div>
+    
+              <!-- Sélection du service -->
+              <div>
+                <label class="block text-sm font-medium mb-1">Service à effectuer</label>
+                <select class="w-full p-2 border rounded-md bg-white">
+                  <option value="">Sélectionnez un service</option>
+                  <option value="1">Vidange complète (1h)</option>
+                  <option value="2">Changement plaquettes (2h)</option>
+                  <option value="3">Contrôle technique (0.5h)</option>
+                  <option value="4">Révision complète (3h)</option>
+                </select>
+              </div>
+    
+              <!-- Sélection du mécanicien -->
+              <div>
+                <label class="block text-sm font-medium mb-1">Mécanicien</label>
+                <select class="w-full p-2 border rounded-md bg-white">
+                  <option value="">Sélectionnez un mécanicien</option>
+                  <option value="1">Jean Dupont (Mécanique générale)</option>
+                  <option value="2">Marie Martin (Freinage)</option>
+                  <option value="3">Pierre Lambert (Diagnostic)</option>
+                  <option value="4">Sophie Bernard (Moteur)</option>
+                </select>
+              </div>
+    
+              <!-- Sélection du statut -->
+              <div>
+                <label class="block text-sm font-medium mb-1">Statut</label>
+                <select class="w-full p-2 border rounded-md bg-white">
+                  <option value="not_started">Not started</option>
+                  <option value="in_progress">In progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+    
+              <!-- Bouton de soumission -->
+              <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition-colors mt-6">
+                Attribuer la tâche
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 </div>

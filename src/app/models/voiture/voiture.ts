@@ -1,18 +1,16 @@
-import {User} from '../user/user';
-import {MesVoituresService} from '../../services/voiture/mes-voitures.service';
-import {model} from '@angular/core';
+import { User } from '../user/user';
 
 export class Voiture {
   private _id!: string
-  private _client!: User|null
+  private _client!: User | null
   private _brand!: string
-  private _typeOfCar!: string
+  private _typeOfCar!: { _id:string , name:string, priceCoefficient:number |null , timeCoefficient:number|null }
   private _model!: string
-  private _year!: number|null
+  private _year!: number | null
   private _plateNumber!: string
 
 
-  constructor(id: string, client: User | null, brand: string, typeOfCar: string, model: string, year: number | null, plateNumber: string) {
+  constructor(id: string, client: User | null, brand: string, typeOfCar: { _id:string , name:string, priceCoefficient:number | null , timeCoefficient:number | null }, model: string, year: number | null, plateNumber: string) {
     this._id = id;
     this._client = client;
     this._brand = brand;
@@ -46,14 +44,6 @@ export class Voiture {
     this._brand = value;
   }
 
-  get typeOfCar(): string {
-    return this._typeOfCar;
-  }
-
-  set typeOfCar(value: string) {
-    this._typeOfCar = value;
-  }
-
   get model(): string {
     return this._model;
   }
@@ -76,5 +66,12 @@ export class Voiture {
 
   set plateNumber(value: string) {
     this._plateNumber = value;
+  }
+  get typeOfCar(): { _id: string; name: string; priceCoefficient: number | null; timeCoefficient: number | null } {
+    return this._typeOfCar;
+  }
+
+  set typeOfCar(value: { _id: string; name: string; priceCoefficient: number | null; timeCoefficient: number | null }) {
+    this._typeOfCar = value;
   }
 }

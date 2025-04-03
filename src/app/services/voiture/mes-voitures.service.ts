@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
-import {of, throwError} from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,27 +20,27 @@ export class MesVoituresService {
   //   }
   //   return localStorage.getItem('typeofcars');
   // }
-  getNbvoituresEnregistrer$(){
+  getNbvoituresEnregistrer$() {
     console.log("getNbvoituresEnregistrer$")
 
-    return this.http.get<{message: string, totalCars: number}>
-    (this.apiUrl + "car/total-cars").pipe
-    (
-      map(
-        data => {
-          console.log(data)
-          return data;
-        }
-      ),
-      catchError(error => {
-        console.error("Erreur lors de lgetNbvoituresEnregistrer$", error);
-        return throwError(() => new Error("Échec getNbvoituresEnregistrer$"));
-      })
-    )
+    return this.http.get<{ message: string, totalCars: number }>
+      (this.apiUrl + "car/total-cars").pipe
+      (
+        map(
+          data => {
+            console.log(data)
+            return data;
+          }
+        ),
+        catchError(error => {
+          console.error("Erreur lors de lgetNbvoituresEnregistrer$", error);
+          return throwError(() => new Error("Échec getNbvoituresEnregistrer$"));
+        })
+      )
   }
 
 
-  getBrand$(){
+  getBrand$() {
     console.log("getBrand$")
     const storedData = localStorage.getItem('brands');
     if (storedData) {
@@ -48,7 +48,7 @@ export class MesVoituresService {
       return of(JSON.parse(storedData)); // Convertir en JSON et renvoyer un Observable
     }
 
-    return this.http.get<{_id: string, name: string}[]>
+    return this.http.get<{ _id: string, name: string }[]>
       (this.apiUrl + "car/brand").pipe
       (
         map(
@@ -93,15 +93,22 @@ export class MesVoituresService {
 
   getMesVoitures$(client: string | undefined) {
     console.log("getMesVoitures$")
-      return this.http.get<{ _id: string, client: string,brand: string,typeOfCar:string,model:string,year:number, plateNumber: string }[]>
-      (this.apiUrl+"car/client/"+client)
-        .pipe(
-          map(data => {
-            console.log(data)
-            localStorage.setItem('my_cars', JSON.stringify(data));
-            return data;
-          }),
-          catchError(error => {
+    return this.http.get<{
+      _id: string, client: string, brand: {
+        _id: string, name: string
+      }, typeOfCar:
+      {
+        _id: string, name: string , priceCoefficient:number|null, timeCoefficient:number|null
+      }, model: string, year: number, plateNumber: string
+    }[]>
+      (this.apiUrl + "car/client/" + client)
+      .pipe(
+        map(data => {
+          console.log(data)
+          localStorage.setItem('my_cars', JSON.stringify(data));
+          return data;
+        }),
+        catchError(error => {
           console.error("Erreur lors de getMesVoitures$ : ", error);
           return throwError(() => new Error("Erreur lors de getMesVoitures$"));
         })
@@ -110,17 +117,19 @@ export class MesVoituresService {
 
   getAllVoitures$() {
     console.log("getAllVoitures$")
-    return this.http.get<{ _id: string, client: {
-        "_id":string,"name":string,"role":string
-      },brand: {
-        _id:string,name:string
+    return this.http.get<{
+      _id: string, client: {
+        "_id": string, "name": string, "role": string
+      }, brand: {
+        _id: string, name: string
       },
       typeOfCar:
-        {
-      _id:string,name:string
-        },
-      model:string,year:number, plateNumber: string }[]>
-    (this.apiUrl+"car/client/")
+      {
+        _id: string, name: string , priceCoefficient:number|null, timeCoefficient:number|null
+      },
+      model: string, year: number, plateNumber: string
+    }[]>
+      (this.apiUrl + "car/client/")
       .pipe(
         map(data => {
           console.log(data)
@@ -135,27 +144,27 @@ export class MesVoituresService {
 
 
   enregistrer_voiture$(
-    voiture_params: { client: string | undefined; model: any;  year: any; typeOfCar: any; brand: any; plateNumber: any }
+    voiture_params: { client: string | undefined; model: any; year: any; typeOfCar: any; brand: any; plateNumber: any }
   ) {
-    return this.http.post(this.apiUrl + 'car/client' , voiture_params).pipe(
+    return this.http.post(this.apiUrl + 'car/client', voiture_params).pipe(
       tap(
-        (result:any) => {
+        (result: any) => {
           console.log(result)
         }
-      ),catchError(error => {
+      ), catchError(error => {
         console.error("Erreur lors de la enregistrement de voiture : ", error);
         return throwError(() => new Error("Erreur lors de la enregistrement de voiture"));
       })
     )
   }
 
-  enregistrer_brand$(p:{name: string}){
-    return this.http.post(this.apiUrl + 'car/brand' , p).pipe(
+  enregistrer_brand$(p: { name: string }) {
+    return this.http.post(this.apiUrl + 'car/brand', p).pipe(
       tap(
-        (result:any) => {
+        (result: any) => {
           console.log(result)
         }
-      ),catchError(error => {
+      ), catchError(error => {
         console.error("Erreur lors de la enregistrement de marque : ", error);
         return throwError(() => new Error("Erreur lors de la enregistrement de marque"));
       })

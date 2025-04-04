@@ -36,6 +36,39 @@
     </div>
   </div>
 
+  <h2 class="text-3xl mb-3">Statistiques des rendez-vous :</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div>
+        <h2 class="text-lg font-medium text-gray-700">Passés</h2>
+        <p class="text-3xl font-bold text-gray-900">{{ rdv_past }}</p>
+      </div>
+      <div class="text-4xl text-green-500">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div>
+        <h2 class="text-lg font-medium text-gray-700">Aujourd'hui</h2>
+        <p class="text-3xl font-bold text-gray-900">{{ rdv_today }}</p>
+      </div>
+      <div class="text-4xl text-blue-500">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+      <div>
+        <h2 class="text-lg font-medium text-gray-700">Futur</h2>
+        <p class="text-3xl font-bold text-gray-900">{{ rdv_futur }}</p>
+      </div>
+      <div class="text-4xl text-yellow-500">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+    </div>
+  </div>
+
 
   <h2 class="text-3xl mb-3">Chiffres d'affaires :</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -77,7 +110,7 @@
         <h2 class="text-lg font-medium text-gray-700">Meilleur pack vendue</h2>
         <p class="text-3xl font-bold text-gray-900">miandry mialy</p>
         <div style="text-align: end">
-          <button (click)="showDialog_packs()"  class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir classement→</button>
+          <button (click)="showDialog_packs()"  class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir packs→</button>
         </div>
       </div>
     </div>
@@ -85,9 +118,9 @@
     <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
       <div style="width: 100%">
         <h2 class="text-lg font-medium text-gray-700">Meilleur service vendue</h2>
-        <p class="text-3xl font-bold text-gray-900">miandry mialy</p>
+        <p class="text-3xl font-bold text-gray-900">{{ topService.topService?.name }} ({{ topService.topService?.totalRequests }})</p>
         <div style="text-align: end">
-          <button (click)="showDialog_services()" class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir classement→</button>
+          <button (click)="showDialog_services()" class="text-primary hover:text-primary/80 font-semibold cursor-pointer">Voir services→</button>
         </div>
       </div>
     </div>
@@ -258,16 +291,6 @@
   class="rounded-lg">
 
   <div class="space-y-6">
-
-    <div class=" px-6 py-4 gap-4 mb-4">
-<!--      todo insert -->
-      <form [formGroup]="form_new_service" (ngSubmit)="onSubmit_new_service()">
-        <label for="name_service" class="block text-gray-700 font-semibold mb-2">Nom marque :</label>
-        <input type="text" id="name_service" formControlName="name" class="w-full p-2 border rounded-md" placeholder="Mercedes , Jeep ... "/>
-        <p-button label="Enregistrer" type="submit" />
-      </form>
-    </div>
-
 
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">

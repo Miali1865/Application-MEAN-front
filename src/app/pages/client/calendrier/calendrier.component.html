@@ -11,34 +11,45 @@
           [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
           [maximizable]="true"
           (close)="date_selected_event = null ; date_selected_event_title = null">
+
   <div class="overflow-x-auto">
     <table class="w-full border-collapse bg-white text-left text-sm">
       <thead class="bg-gray-200">
       <tr>
-        <th class="px-4 py-2 border">ID</th>
         <th class="px-4 py-2 border">Heure</th>
         <th class="px-4 py-2 border">Service</th>
+        <th class="px-4 py-2 border">Voiture</th>
         <th class="px-4 py-2 border">Mecanicien</th>
 
         @if (useconnected?.role != "client"){
           <th class="px-4 py-2 border">Client</th>
         }
+        <th class="px-4 py-2 border">Status</th>
 
       </tr>
       </thead>
       <tbody id="table-body">
-      <tr class="border">
-        <td class="px-4 py-2">1</td>
-        <td class="px-4 py-2" data-date="2025-03-20">8 : 00</td>
-        <td class="px-4 py-2">Révision complète</td>
-        <td class="px-4 py-2">Roger Floriant</td>
+        @for(i of rdv_selected;track $index){
+          <tr class="border">
 
-        @if (useconnected?.role != "client"){
-          <td class="px-4 py-2">
-            Client 1
-          </td>
+          <td class="px-4 py-2">{{ i.timeSlot }}</td>
+            <td class="px-4 py-2">{{ i.service }}</td>
+            <td class="px-4 py-2">{{ i.carBrand }} {{ i.carModel }} ({{i.plateNumber}})</td>
+          <td class="px-4 py-2">{{ i.mechanic }}</td>
+
+          @if (useconnected?.role != "client"){
+            <td class="px-4 py-2">
+              {{ i.clientName }}
+            </td>
+          }
+            <td class="px-4 py-2">
+              {{ i.status }}
+            </td>
+
+          </tr>
+
         }
-      </tr>
+
       </tbody>
     </table>
   </div>

@@ -10,6 +10,7 @@ import {MessagetoastService} from '../../../services/messagetoast/messagetoast.s
 import {ServicesReparation} from '../../../models/services_reparation/services-reparation';
 import {ServiceService} from '../../../services/service/service.service';
 import {ThousandPipe} from '../../../pipes/thousand/thousand.pipe';
+import {RdvService} from '../../../services/rdv/rdv.service';
 
 @Component({
   selector: 'app-manager-page',
@@ -42,6 +43,7 @@ export class ManagerPageComponent implements OnInit {
 
   voitureService = inject(MesVoituresService)
   messageService = inject(MessagetoastService)
+  rdvService = inject(RdvService)
   service = inject(ServiceService)
 
   form_new_brand: FormGroup = new FormGroup({
@@ -52,6 +54,10 @@ export class ManagerPageComponent implements OnInit {
       name:new FormControl('',[Validators.required])
     }
   )
+  topService: { topService: { name: string; totalRequests: number } } = { topService: { name: '', totalRequests: 0 } };
+  rdv_past: number = 0;
+  rdv_today: number = 0;
+  rdv_futur: number = 0;
 
 
   constructor() { }
@@ -87,7 +93,44 @@ export class ManagerPageComponent implements OnInit {
 
     )
 
-}
+    this.service.getBestServices$().subscribe(
+      (data) => {
+        this.topService = data;
+      },
+      (error) => {
+        console.error('Erreur lors getBestServices$:', error);
+      }
+    )
+
+    // stats rdv
+    this.rdvService.get_nb_past$().subscribe(
+      (data) => {
+        this.rdv_past = data.count;
+      },
+      (error) => {
+        console.error('Erreur lors getBestServices$:', error);
+      }
+    )
+    this.rdvService.get_nb_today$().subscribe(
+      (data) => {
+        this.rdv_today = data.count;
+      },
+      (error) => {
+        console.error('Erreur lors getBestServices$:', error);
+      }
+    )
+    this.rdvService.get_nb_future$().subscribe(
+      (data) => {
+        this.rdv_futur = data.count;
+      },
+      (error) => {
+        console.error('Erreur lors getBestServices$:', error);
+      }
+    )
+
+
+
+  }
 
   showDialog_brands() {
     this.visible_brands = true;
@@ -123,10 +166,5 @@ export class ManagerPageComponent implements OnInit {
       error: err => console.error('Erreur :', err)
     })
   }
-
-  onSubmit_new_service(){
-
-  }
-
 
 }

@@ -9,6 +9,7 @@ import {ServicesReparation} from '../../models/services_reparation/services-repa
 })
 export class ServiceService {
   private apiUrl = `${environment.apiUrl}/api/services`;
+  private apiUrl_dahsboard = `${environment.apiUrl}/api/dashboard/best-service`;
   constructor(private http: HttpClient) {}
 
   getServices$(){
@@ -17,12 +18,31 @@ export class ServiceService {
       map(data => data.map(
         (serv:
            {
-             name: string | null; description: string | null; basePrice:number | null; estimatedTime: number | null
+            _id:string ;name: string | null; description: string | null; basePrice:number | null; estimatedTime: number | null
            }
-        ) => new ServicesReparation(null, serv.name, serv.description, serv.basePrice,serv.estimatedTime))),
+        ) => new ServicesReparation(serv._id, serv.name, serv.description, serv.basePrice,serv.estimatedTime))),
       catchError(error => {
         throw error;
       })
     );
   }
+
+  getBestServices$(){
+    console.log("apiUrl_dahsboard")
+    return this.http.get<{
+      topService:{
+        name:string,
+        totalRequests:number
+      }
+    }>(this.apiUrl_dahsboard).pipe(
+      map(data => {
+        console.log(data)
+        return data;
+      }),
+      catchError(error => {
+        throw error;
+      })
+    );
+  }
+
 }

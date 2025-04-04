@@ -53,7 +53,7 @@ export const routes: Routes = [
       { path: '', component: ManagerPageComponent, title: 'Accueil Manager' },
       // { path: 'collectionslist', component: CollectionsListComponent, title: 'CollectionsList' },
       { path: 'tableau_bord', component: ManagerPageComponent, title: 'Tableau de bord' },
-      { path: 'calendrier', component: ManagerPageComponent, title: 'Calendrier' },
+      { path: 'calendrier', component: CalendrierComponent, title: 'Calendrier' },
       { path: 'facturations', component: FacturesManagerComponent, title: 'Factures' },
       { path: 'utilisateurs', component: GestionUtilisateursManagerComponent, title: 'Factures' },
       { path: 'all_voitures', component: AllVoituresComponent, title: 'Voitures' },

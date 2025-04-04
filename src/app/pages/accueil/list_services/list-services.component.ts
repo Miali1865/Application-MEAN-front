@@ -12,6 +12,8 @@ import { NgFor, NgIf } from '@angular/common';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import {RdvService} from '../../../services/rdv/rdv.service';
+import {MessagetoastService} from '../../../services/messagetoast/messagetoast.service';
 
 @Component({
   selector: 'app-list-pack',
@@ -31,6 +33,8 @@ export class ListServicesComponent implements OnInit {
   services: ServicesReparation[] = [];
   voitureService = inject(MesVoituresService);
   service = inject(ServiceService);
+  rdvService = inject(RdvService);
+  messageService=inject(MessagetoastService)
   date_selected: string | null = '';
 
 
@@ -45,10 +49,42 @@ export class ListServicesComponent implements OnInit {
   user_connected = this.signinupService.getuserconnected()
   id: string | undefined = this.user_connected?.id;
 
-  availableTimes: string[] = ['8:00', '10:00', '14:00', '16:00'];
-  selectedTime: string = this.availableTimes[0];
+  currentStep = 1;
+  steps = ['Voiture', 'Devis', 'Date', 'Confirmer'];
+
+  selectedTime: string = '08:00';
+
+  calendarEvents: any =
+    [
+    // { title: 'Event 1', start: '2024-09-01', end: '2024-09-11', color: 'yellow' },
+    // { title: 'Event 2', date: '2024-09-02' },
+
+    // {
+    //   title: 'indisponible', date: '2025-04-04',
+    //   backgroundColor: '#f56954', // Couleur de fond rouge
+    //   borderColor: '#f56954',     // Couleur de bordure rouge
+    //   textColor: '#fff',
+    //   diplay: 'block'
+    // },
+
+    // {
+    //   title: 'BCH237',
+    //   start: '2024-08-12T10:30:00',
+    //   end: '2024-08-12T11:30:00',
+    //   // extendedProps: {
+    //   //   department: 'BioChemistry'
+    //   // },
+    //   // description: 'Lecture'
+    //   // , color: 'yellow'
+    // },
+    // { title: '2', date: '2024-01-01', diplay: 'block' },
+
+  ];
+
 
   protected readonly Number = Number;
+  totaltempsestimed!: number;
+  totalprix!: number;
 
   ngOnInit() {
     this.service.getServices$().subscribe(
@@ -68,7 +104,7 @@ export class ListServicesComponent implements OnInit {
     }
   }
 
-  showDialog(i:ServicesReparation) {
+  showDialog_service_selected(i:ServicesReparation) {
     if (this.user_connected) {
       this.visible_rdv = true;
       this.service_selected=i
@@ -93,30 +129,67 @@ export class ListServicesComponent implements OnInit {
 
   }
 
-  currentStep = 1;
-  steps = ['Voiture', 'Devis', 'Date', 'Confirmer'];
 
   nextStep() {
     if (this.currentStep < this.steps.length) {
       this.currentStep++;
     }
+    if (this.currentStep){
+      this.fetch_date_indispo()
+    }
+    if (this.currentStep ==3){
+      this.totaltempsestimed =(Number(this.service_selected?.estimatedTime) * Number(this.voiture_selected?.typeOfCar?.timeCoefficient))
+      this.totalprix =(Number(this.service_selected?.basePrice) * Number(this.voiture_selected?.typeOfCar?.priceCoefficient))
+    }
+  }
+
+  fetch_date_indispo(){
+    this.rdvService.getnb_per_rdv$().subscribe({
+      next: data => {
+        this.calendarEvents = data.appointmentsByDate
+          .filter(event => event.title >= 4) // Filtre les événements dont title >= 4
+          .map(event => ({
+          backgroundColor: '#f56954',
+          borderColor: '#f56954',
+          date:event.date,
+          title:'indisponible'
+        }));
+      },
+      error: err => console.error('Erreur :', err)
+    });
   }
 
   prevStep() {
+    if (this.currentStep===3){
+      this.date_selected=null
+      this.selectedTime='8:00'
+    }
     if (this.currentStep > 1) {
       this.currentStep--;
     }
   }
 
   submitForm() {
-    // if (this.signupForm.valid) {
-    //   console.log('Form submitted:', this.signupForm.value);
-    //   this.nextStep(); // Aller à l'étape "Done"
-    // }
-  }
-
-  select_service(i: ServicesReparation) {
-    this.service_selected=i
+    if (this.voiture_selected?.id && this.service_selected?.id && this.date_selected && this.selectedTime) {
+      this.rdvService.enregistrer_rdv$(
+        this.voiture_selected?.id,
+        this.service_selected?.id,
+        this.date_selected,
+        this.selectedTime
+      ).subscribe({
+        next: () => {
+          this.messageService.showSuccess("Rendez-vous enregistrer");
+          this.visible_rdv = false;
+          this.service_selected = null;
+          this.voiture_selected = null;
+          this.date_selected = null
+          this.currentStep=1;
+        },
+        error: err => console.error('Erreur :', err)
+      })
+    }else {
+      console.warn("value null")
+    }
   }
 
   select_voiture(i: Voiture) {
@@ -124,7 +197,7 @@ export class ListServicesComponent implements OnInit {
   }
 
   calendarOptions: any = {
-    height: 490,
+    height: 410,
     locale: 'fr',
     dateClick: this.handleDateClick.bind(this), // Fonction de gestion du clic sur une date
     aspectRatio: 1,
@@ -151,7 +224,9 @@ export class ListServicesComponent implements OnInit {
   };
 
   handleDateClick(arg: any) {
-    this.date_selected = arg.dateStr;
+    if(arg.dateStr != '2025-04-04'){
+      this.date_selected = arg.dateStr;
 
+    }
   }
 }

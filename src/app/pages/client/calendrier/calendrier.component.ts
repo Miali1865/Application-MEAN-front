@@ -7,6 +7,8 @@ import {Dialog} from 'primeng/dialog';
 import {DatePipe} from '@angular/common';
 import {SigninupService} from '../../../services/signinup/signinup.service';
 import {User} from '../../../models/user/user';
+import {RdvService} from '../../../services/rdv/rdv.service';
+import {Dictionary} from '@fullcalendar/core/internal';
 @Component({
   selector: 'app-calendrier',
   imports: [
@@ -25,18 +27,62 @@ export class CalendrierComponent implements OnInit {
   date_selected_event_title: string | null = '';
   signinupService = inject(SigninupService)
   useconnected!:User|null;
-
+  rdvService = inject(RdvService);
+  rdv_selected:any[]=[]
 
   ngOnInit() {
     this.useconnected= this.signinupService.getuserconnected()
+    this.fetch_rdv_vaovao()
+  }
+  calendarEvents: any[] =
+    [
+    // { title: 'Event 1', start: '2024-09-01', end: '2024-09-11', color: 'yellow' },
+    // { title: 'Event 2', date: '2024-09-02' },
+    // {
+    //   title: '8', date: '2024-01-02',
+    //   backgroundColor: '#f56954', // Couleur de fond rouge
+    //   borderColor: '#f56954',     // Couleur de bordure rouge
+    //   textColor: '#fff'
+    // },
+    // {
+    //   title: 'BCH237',
+    //   start: '2025-04-12T10:30:00',
+    //   end: '2025-04-12T11:30:00',
+    //   // extendedProps: {
+    //   //   department: 'BioChemistry'
+    //   // },
+    //   // description: 'Lecture'
+    //   // , color: 'yellow'
+    // },
+    // { title: '2', date: '2024-01-01', diplay: 'block' },
 
-  //   todo fetch event taches
+  ];
+
+  fetch_rdv_vaovao(){
+    this.rdvService.getrdv_and_detail$().subscribe(
+      {
+        next: data => {
+          this.calendarEvents = data.appointmentsByDate
+            .map((i) => (
+              {
+              backgroundColor: '#3899e8',
+              borderColor: '#ffffff',
+              date:i.date,
+              title:i.timeSlots.length,
+              timeSlots:i.timeSlots
+            }));
+        },
+        error: err => console.error('Erreur :', err)
+      }
+    )
   }
 
   handleEventClick(info: any) {
     this.visible_event = true;
     this.date_selected_event = info.event.start;
     this.date_selected_event_title = info.event.title;
+    this.rdv_selected=info.event._def.extendedProps.timeSlots
+    console.log(this.rdv_selected)
   }
 
 
@@ -78,38 +124,18 @@ export class CalendrierComponent implements OnInit {
       right: 'dayGridMonth,listWeek'
     },
     initialView: 'dayGridMonth',
-    // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
-    editable: true,
-    selectable: true,
+    editable: false,
+    selectable: false,
     selectMirror: true,
-    dayMaxEvents: true,
+    dayMaxEvents: false,
+// Définir la plage de dates navigables
+    validRange: {
+      end: new Date(new Date().setMonth(new Date().getMonth() + 6)) // Limite à 6 mois dans le futur
+    }
 
   };
 
-  calendarEvents: any =
-    [
-    // { title: 'Event 1', start: '2024-09-01', end: '2024-09-11', color: 'yellow' },
-    // { title: 'Event 2', date: '2024-09-02' },
-    // {
-    //   title: '8', date: '2024-01-02',
-    //   backgroundColor: '#f56954', // Couleur de fond rouge
-    //   borderColor: '#f56954',     // Couleur de bordure rouge
-    //   textColor: '#fff'
-    // },
-    {
-      title: 'BCH237',
-      start: '2025-03-12T10:30:00',
-      end: '2025-03-12T11:30:00',
-      // extendedProps: {
-      //   department: 'BioChemistry'
-      // },
-      // description: 'Lecture'
-      // , color: 'yellow'
-    },
-    // { title: '2', date: '2024-01-01', diplay: 'block' },
-
-  ];
 
 
 

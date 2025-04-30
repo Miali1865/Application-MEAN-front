@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
 
+Deploye with [Netlify](https://www.netlify.com/)
+
+URL : [https://voiture-mean.netlify.app](https://voiture-mean.netlify.app)
+
 ## Development server
 
 To start a local development server, run:
